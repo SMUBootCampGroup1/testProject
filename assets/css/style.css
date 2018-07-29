@@ -1,3 +1,16 @@
+
+@font-face {
+    font-family: Canter;
+    src: url("../fonts/canter/Canter\ Bold.otf");
+}
+
+body {
+    background-image: url("../images/storelocator_clothing.png");
+} 
+
+
+.fa-arrow-left {
+}
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -14,17 +27,29 @@
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: #fefefe;
+    color: gainsboro;
+    text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 10px #ff00b4, 0 0 20px #ff00b4, 0 0 40px #FF6103, 0 0 40px #FF6103, 0 0 50px #FF6103;
+    font-size: 1.3em;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 90%;
+    border: #ff00b4 solid 5px; /* Could be more or less, depending on screen size */
+    background: linear-gradient(150deg, black , #011f4b 59%, silver 71%, black 77%),
+                linear-gradient(150deg, rgba(0,0,0,0.75), rgba(0,0,0,0));
+}
+
+h3, h2, p {
+    text-shadow: none;
+}
+#picture {
+    border: #ff00b4 3px solid;
 }
 
 /* The Close Button */
 .close {
-    color: #aaa;
-    float: right;
+    color: red;
+    text-align: center;
     font-size: 28px;
     font-weight: bold;
 }
@@ -34,4 +59,20 @@
     color: black;
     text-decoration: none;
     cursor: pointer;
+    float: right;
 }
+
+#publicSpaceName {
+    font-family: Canter;
+    font-size: 3.75em;
+}
+
+#pictureDiv {
+    padding-bottom: 20px;
+}
+
+#typeAndRating {
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+

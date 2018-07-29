@@ -4,11 +4,19 @@
 <head>
 
   <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>sdfs</title>
   <link href="assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 </head>
 
 <body>
+
+
+
+<i class="fas fa-arrow-left"></i>
   <!-- Trigger/Open The Modal -->
 <button id="myBtn">Open Modal</button>
 
@@ -17,10 +25,26 @@
 
   <!-- Modal content -->
   <div class="modal-content">
+    
+    <h1 id="publicSpaceName">Placeholder Name</h1>
+    <div id="pictureDiv">
+      <img id="picture" src="https://s3-media3.fl.yelpcdn.com/bphoto/vx2f2rG0-ul890AVU2Lpgg/348s.jpg">
+    </div>
+    <div id="typeAndRating">
+      <h2>Type: </h2>
+      <h3 id="type">Placeholder type</h3>
+      <h2>Rating: </h2>
+      <h3 id="rating">Placeholder Rating</h3>
+    </div>
+    <div id="reviewsDiv">
+      <h3>Reviews: </h3>
+      <p id="reviews">This place sucks.....</p>
+    </div>
+
     <span class="close">&times;</span>
-    <p>Some text in the Modal..</p>
-    <img src="https://s3-media3.fl.yelpcdn.com/bphoto/vx2f2rG0-ul890AVU2Lpgg/348s.jpg">
+
   </div>
+
 
 </div>
 <script>
