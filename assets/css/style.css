@@ -108,6 +108,12 @@ p {
 #priceAndRating {
     padding-bottom: 10px;
     padding-left: 10px;
+    margin-top: 100px;
+}
+
+.fa, .fas {
+    font-weight: 900;
+    padding-top: 10px;
 }
 
 @media screen and (max-width: 900px) and (min-width: 600px) {
