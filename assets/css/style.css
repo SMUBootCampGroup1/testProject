@@ -130,15 +130,21 @@ p {
 }
 
 @media screen and (max-width: 900px) and (min-width: 600px) {
-
+    .sideMenu{
+        max-width: 20%;
+    }
 }
 
 @media screen and (max-width: 1200px) and (min-width: 900px) {
-
+    .sideMenu{
+        max-width: 20%;
+    }
 }
 
 @media screen and (max-width: 1800px) and (min-width: 1200px) {
-
+    .sideMenu{
+        max-width: 20%;
+    }
 }
 
 
