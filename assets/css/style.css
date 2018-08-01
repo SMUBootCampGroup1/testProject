@@ -1,8 +1,26 @@
+/* 
+Main Pallet:
+blue grey: #3A4042
+dark navy: #091324
+ultra light blue: #F4F5F2
+light grey blue: #CCD0DB
+sumo orange: FF5608
 
-body {
-    background-image: url("../images/storelocator_clothing.png");
-} 
+Complementary Colors:
+periwinkle: #A485A8
+light flat green: #9FA896
 
+white: #FFFFFF
+black: #000000
+ */
+
+ * {
+    box-sizing: border-box;
+  }
+  
+#bodyDiv {
+    background-color: #3A4042;
+}
 
 .fa-arrow-left {
     color: black;
@@ -117,13 +135,40 @@ p {
 }
 
 @media screen and (max-width: 900px) and (min-width: 600px) {
-
+    .sideMenu{
+        max-width: 20%;
+    }
 }
 
 @media screen and (max-width: 1200px) and (min-width: 900px) {
-
+    .sideMenu{
+        max-width: 20%;
+    }
 }
 
 @media screen and (max-width: 1800px) and (min-width: 1200px) {
-
+    .sideMenu{
+        max-width: 20%;
+    }
 }
+
+
+/* Search Screen */
+.fa-user {
+    color: white;
+    font-size: 2em;
+}
+
+#mainPageImage {
+    width: 100%;
+    height: auto;
+    z-index: 0;
+}
+
+.menuItem a {
+    margin: 0px 15px;
+    font-family: Cabin, sans-serif;
+    font-size: 1.5em;
+    color: #CCD0DB;
+}
+  

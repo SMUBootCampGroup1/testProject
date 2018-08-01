@@ -1,93 +1,63 @@
 <!DOCTYPE html>
 <html lang="en-us">
 
+<!-- 
+Main Pallet:
+blue grey: #3A4042
+dark navy: #091324
+ultra light blue: #F4F5F2
+light grey blue: #CCD0DB
+sumo orange: FF5608
+
+Complementary Colors:
+periwinkle: #A485A8
+light flat green: #9FA896
+
+white: #FFFFFF
+black: #000000
+-->
+     
 <head>
-
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Truva</title>
 
-  <title>sdfs</title>
-  <link href="assets/css/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
-    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+
+  <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="assets/css/menu.css" />
+  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Cabin|Oswald|PT+Sans+Narrow" rel="stylesheet">
 </head>
 
 <body>
+  <nav class="navbar navbar-dark bg-dark sidebarNavigation" data-sidebarClass="navbar-dark bg-dark ">
+    <button class="navbar-toggler left-navbar-toggle" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <img src="assets/images/truva_text_small.png" alt="Truva Logo" id="topBarLogo">
+    <i class="fas fa-user" id="topBarProfileIcon"></i>
 
-  <navbar>
-    <h1>Truva</h1>
-  </navbar>
-
-  <!-- Trigger/Open The Modal -->
-  <button id="myBtn">Open Modal</button>
-
-  <!-- The Modal -->
-  <div id="myModal" class="modal">
-
-    <!-- Modal content -->
-    <!--make  a dollar sign icon to show how expensive-->
-    <div class="modal-content">
-      <div id="header">
-        <h1 id="publicSpaceName">Placeholder Name</h1>
-      </div>
-
-      <div id="pictureDiv">
-        <!--<i class="far fa-caret-left"></i>-->
-        <img id="picture" src="https://s3-media3.fl.yelpcdn.com/bphoto/vx2f2rG0-ul890AVU2Lpgg/348s.jpg">
-        <!-- <i class="far fa-caret-right"></i>-->
-      </div>
-
-      <div id="priceAndRating">
-        <h3 id="rating">
-          <i class="fas fa-dollar-sign"></i>
-        </h3>
-        <h3 id="pricePoint">Insert Icon here</h3>
-      </div>
-
-      <div id="reviewsDiv">
-        <h3>Reviews: </h3>
-        <p id="reviews">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-          aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."</p>
-      </div>
-
-
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+            <li class="active menuItem"><a href="#">Search History</a></li>
+            <li class="active menuItem"><a href="#">Profile</a></li>
+            <li class="active menuItem"><a href="#">Log Off</a></li>
+        </ul>
     </div>
+</nav>
 
-    <span class="close">&times;</span>
-
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+      <img src="assets/images/main_page_pic2.jpg" id="mainPageImage" alt="Picture of a Restaurant with tables set">
   </div>
-  <script>
-    // Get the modal
-    var modal = document.getElementById('myModal');
-
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on the button, open the modal 
-    btn.onclick = function () {
-      modal.style.display = "block";
-      span.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-      modal.style.display = "none";
-      span.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-  </script>
+</div>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="assets/javascript/menu.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 
 </html>
