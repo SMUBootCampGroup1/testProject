@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Profile Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Cabin%7COswald%7CPT+Sans+Narrow" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background: gray;
+        }
+
+        .btn {
+            font-family: PT Sans Narrow;
+        }
+
+        h1 {
+            font-family: Oswald;
+            margin-top: 0px;
+            color: #FF5608;
+        }
+
+        h3 {
+            font-family: PT Sans Narrow;
+            margin-top: 0px;
+            color: #3A4042;
+
+        }
+
+        .profile-text {
+            display: inline-grid;
+            margin-top: 10px;
+            margin-left: 15px;
+        }
+
+        .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .col-centered {
+            float: none;
+            margin: 0 auto;
+            border: black 2px;
+            height: 250px;
+            background: white;
+            margin-top: 50px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        img {
+            height: 75px;
+            width: 75px;
+            margin-top: 10px;
+
+        }
+
+        .list-group-item {
+            width: 100%;
+            height: 50px;
+            font-family: PT Sans Narrow;
+        }
+
+        .profile-contact-info {
+            padding-left: 0;
+            padding-right: 0;
+            height: 150px;
+        }
+
+        .btn-default {
+            position: absolute;
+            top: 200px;
+            right: 15px;
+        }
+
+        .btn-default:hover {
+            border-radius: 50%;
+        }
+
+        i {
+            color: #3A4042;
+        }
+    </style>
+</head>
+<!-- 
+Main Pallet:
+blue grey: #3A4042
+dark navy: #091324
+ultra light blue: #F4F5F2
+light grey blue: #CCD0DB
+sumo orange: FF5608
+
+Complementary Colors:
+periwinkle: #A485A8
+light flat green: #9FA896
+
+white: #FFFFFF
+black: #000000
+-->
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-sm-2 col-centered profile-summary">
+                <img src="assets/images/default-avatar.png" class="img-circle" alt="profile-image">
+                <div class="profile-text">
+                    <h1>John Doe</h1>
+                    <h3>San Francisco</h3>
+                </div>
+                <button type="button" class="btn btn-default">
+                    <i class="fas fa-edit"></i> Edit</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-5 col-centered profile-contact-info">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <i class="fas fa-phone"></i>  Phone:</li>
+                    <li class="list-group-item">
+                        <i class="fas fa-envelope"></i>  Email:</li>
+                    <li class="list-group-item">
+                        <i class="fas fa-comment-alt"></i>  Text:</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
