@@ -57,22 +57,21 @@ p {
 
 /* The Close Button */
 .close {
-    color: rgb(255,86,8);
-    opacity: 0.85;
+    display: none;
+    color: black;
     text-align: center;
     font-size: 28px;
     font-weight: bold;
     float: right;
     text-shadow: none;
     position: relative;
-    top: 50px;
     right: 50%;
     cursor: pointer;
 }
 
 .close:hover,
 .close:focus {
-    color: rgb(255,86,8);
+    color: black;
     text-decoration: none;
     cursor: pointer;
     
@@ -101,14 +100,20 @@ p {
 
 #picture {
     float: left;
-    border: #FF5608
+    border: #000
     3px solid;
     width: 95%;
 }
 
-#typeAndRating {
+#priceAndRating {
     padding-bottom: 10px;
     padding-left: 10px;
+    margin-top: 100px;
+}
+
+.fa, .fas {
+    font-weight: 900;
+    padding-top: 10px;
 }
 
 @media screen and (max-width: 900px) and (min-width: 600px) {
