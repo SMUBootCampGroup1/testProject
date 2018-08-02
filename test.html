@@ -35,13 +35,14 @@ black: #000000
 </head>
 
 <body>
-      <nav class="navbar navbar-dark bg-dark sidebarNavigation" data-sidebarClass="navbar-dark bg-dark ">
+<div class="container-fluid">
+    <nav class="navbar navbar-dark bg-dark sidebarNavigation" data-sidebarClass="navbar-dark bg-dark ">
         <button class="navbar-toggler left-navbar-toggle" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <img src="assets/images/truva_text_small.png" alt="Truva Logo" id="topBarLogo">
         <i class="fas fa-user" id="topBarProfileIcon"></i>
-
+    
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="active menuItem"><a href="#">Search History</a></li>
@@ -50,27 +51,23 @@ black: #000000
             </ul>
         </div>
     </nav>
-    <img src="assets/images/main_page_pic2.jpg" id="mainPageImage" alt="Picture of a Restaurant with tables set">
-    
-    <!-- Tag Line -->
-    <h1 class="tagLine">Find Places Nearby</h1>
-    <!-- Search form -->
-    <div class="input-group input-group-sm mb-3 searchForm">
-      <input type="text" class="form-control searchField" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary searchButton" type="button" id="button-addon2">
+    <!-- <div class="row"> -->
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <img src="assets/images/main_page_pic2.jpg" id="mainPageImage" alt="Picture of a Restaurant with tables set">
+            <!-- Tag Line -->
+            <h1 class="tagLine">Find Places Nearby</h1>
+            <!-- Search form -->
+            <input class="form-control searchForm" type="text" placeholder="Search" aria-label="Search">
             <i class="fas fa-search searchIcon" id="topBarProfileIcon"></i>
-        </button>
-      </div>
-    </div>
+            <div id='slider'>
+                <div><img src="assets/images/restaurants.jpg" alt="" ></div>
+                <div><img src="assets/images/nightlife_small.jpg" alt="" ></div>
+            </div>
+        </div>
+    <!-- </div> -->
+</div>           
 
-    <div id='slider'>
-      <div><img src="assets/images/restaurants_small.jpg" alt="Steak on a plate at a restaurant" ></div>
-      <div><img src="assets/images/nightlife_small.jpg" alt="Women dancing at a club" ></div>
-      <div><img src="assets/images/live_music_small.jpg" alt="People at a live music venue" ></div>
-      <div><img src="assets/images/drinks_small.jpg" alt="Bartender making drinks" ></div>
-    </div>
-
+  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="assets/javascript/menu.js"></script>
 <script src="assets/javascript/slick.js"></script>
@@ -79,9 +76,3 @@ black: #000000
 </body>
 
 </html>
-
-
-
-
-
-	
