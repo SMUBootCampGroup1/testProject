@@ -15,6 +15,7 @@ light flat green: #9FA896
 white: #FFFFFF
 black: #000000
 -->
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,75 +27,101 @@ black: #000000
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/menu.css" />
-
+    <link rel="stylesheet" type="text/css" href="assets/css/slick.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/slick-theme.css" />
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Cabin|Oswald|PT+Sans+Narrow" rel="stylesheet">
 </head>
+
 <body>
 
-<!-- Top Menu -->
-<nav class="navbar navbar-dark bg-dark sidebarNavigation" data-sidebarClass="navbar-dark bg-dark ">
-    <button class="navbar-toggler left-navbar-toggle" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <img src="assets/images/truva_text_small.png" alt="Truva Logo" id="topBarLogo">
-    <i class="fas fa-user" id="topBarProfileIcon"></i>
+    <!-- Top Menu -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sidebarNavigation" data-sidebarClass="navbar-dark bg-dark ">
+        <button class="navbar-toggler left-navbar-toggle" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarNavDropdown"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-            <li class="active menuItem"><a href="#">Search History</a></li>
-            <li class="active menuItem"><a href="#">Profile</a></li>
-            <li class="active menuItem"><a href="#">Log Off</a></li>
-        </ul>
-    </div>
-</nav>
-<!-- End Top Menu -->
+        <div class="d-flex flex-row align-item-center">
+            <div class="justify-content-start">
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active menuItem">
+                            <a href="#" class="nav-link">Search History</a>
+                        </li>
+                        <li class="nav-item active menuItem">
+                            <a href="#" class="nav-link">Profile</a>
+                        </li>
+                        <li class="nav-item active menuItem">
+                            <a href="#" class="nav-link">Log Off</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>  
+            <div class="justify-content-between">
+                <img src="assets/images/truva_text_small.png" alt="Truva Logo" id="topBarLogo" class="">
+            </div>
+            <div class="justify-content-end">
+                <i class="fas fa-user" id="topBarProfileIcon"></i>
+            </div>
+        </div>
+    </nav>
+    <!-- End Top Menu -->
 
-<i class="fas fa-arrow-left"></i>
-<!-- Trigger/Open The Modal -->
-<button id="myBtn">Open Modal</button>
+    <i class="fas fa-arrow-left"></i>
+    <!-- Trigger/Open The Modal -->
+    <button id="myBtn">Open Modal</button>
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
-    <!-- Modal content --> <!--make  a dollar sign icon to show how expensive-->
-    <div class="modal-content">
-        <div id="header">
-        <h1 id="publicSpaceName">Restaurant</h1>
-        </div>
-    
-        <div id="pictureDiv">
-        <!--<i class="far fa-caret-left"></i>-->
-        <img id="picture" src="https://s3-media3.fl.yelpcdn.com/bphoto/vx2f2rG0-ul890AVU2Lpgg/348s.jpg">
-        <!-- <i class="far fa-caret-right"></i>-->
-        </div>
-    
-        <div id="typeAndRating">
-        <h3 id="rating">Placeholder Rating</h3>
-        </div>
-    
-        <div id="reviewsDiv">
-        <h3>Reviews: </h3>
-        <p id="reviews">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-        </div>
-    
-        <span class="close">&times;</span>
-    
-    </div>
-</div>
+        <!-- Modal content -->
+        <!--make  a dollar sign icon to show how expensive-->
+        <div class="modal-content">
+            <div id="header">
+                <h1 id="publicSpaceName">Restaurant</h1>
+            </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="assets/javascript/menu.js"></script>
-<script src="assets/javascript/app.js"></script>
-<script src="assets/javascript/modal.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>    
+            <div id="pictureDiv">
+                <div>
+                    <img src="assets/images/restaurants_small.jpg" alt="Steak on a plate at a restaurant">
+                </div>
+                <div>
+                    <img src="assets/images/nightlife_small.jpg" alt="Women dancing at a club">
+                </div>
+                <div>
+                    <img src="assets/images/live_music_small.jpg" alt="People at a live music venue">
+                </div>
+                <div>
+                    <img src="assets/images/drinks_small.jpg" alt="Bartender making drinks">
+                </div>
+            </div>
+
+            <div id="typeAndRating">
+                <h3 id="rating">Placeholder Rating</h3>
+            </div>
+
+            <div id="reviewsDiv">
+                <h3>Reviews: </h3>
+                <p id="reviews">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                    nulla pariatur.</p>
+            </div>
+
+            <span class="close">&times;</span>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="assets/javascript/menu.js"></script>
+    <script src="assets/javascript/app.js"></script>
+    <script src="assets/javascript/modal.js"></script>
+    <script type="text/javascript" src="assets/javascript/slick.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </body>
+
 </html>
-
-
-
-
-
-
-
