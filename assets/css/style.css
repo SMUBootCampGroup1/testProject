@@ -4,7 +4,7 @@ blue grey: #3A4042
 dark navy: #091324
 ultra light blue: #F4F5F2
 light grey blue: #CCD0DB
-sumo orange: FF5608
+sumo orange: #FF5608
 
 Complementary Colors:
 periwinkle: #A485A8
@@ -16,10 +16,14 @@ black: #000000
 
  * {
     box-sizing: border-box;
-  }
+}
 
 body{
     background-color: #9FA896;
+}
+
+.borderOrange { /* for testing */
+    border: 1px solid #FF5608
 }
   
 .fa-arrow-left {
@@ -30,7 +34,7 @@ body{
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 20; /* Sit on top */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -44,19 +48,18 @@ body{
 
 /* Modal Content/Box */
 .modal-content {
-    color: white;
-    /* text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 10px #000, 0 0 20px #000; */
     font-size: 1.1em;
-    margin: 15% auto; /* 15% from the top and centered */
+    color: white;
+    margin: 30% auto; /* 15% from the top and centered */
     padding: 20px;
     width: 70%;
-    height: 55%;
+    height: 65%;
     overflow: auto; /* Enable scroll if needed */
-    border: #fff solid 5px; /* Could be more or less, depending on screen size */
-    background: linear-gradient(to bottom, rgba(255,86,8, 0.6), rgba(0,0,0,0.65));
+    border: #fff solid 1px; /* Could be more or less, depending on screen size */
+    /* background: linear-gradient(to bottom, rgba(255,86,8, 0.6), rgba(0,0,0,0.65)); */
+    background-color: #3A4042;
     text-align: center;
     font-family: 'Oswald', sans-serif;
-
 }
 
 h3, p {
@@ -92,7 +95,6 @@ p {
     color: black;
     text-decoration: none;
     cursor: pointer;
-    
 }
 
 #header {
@@ -101,18 +103,19 @@ p {
 
 #publicSpaceName {
     font-family: 'Oswald', sans-serif;
-    font-size: 3em;
+    font-size: 2em;
+}
+
+#pictureDiv {
+    padding-bottom: 0;
+    text-align: center;
 }
 
 #pictureDiv i {
     float: left;
     position: relative;
     top: 130px;
-    margin: 10px auto;
-    padding-bottom: 0;
-    text-align: center;
-    width: 100%;
-    height: 100%;
+    margin: 0 2.5px;
 }
 
 #picture {
@@ -142,12 +145,26 @@ p {
         max-width: 60%;
     }
 
+    .mainPageSlider {
+        position: absolute;
+        top: 400px ;
+        left: 100px;
+        padding: 5px;
+    } 
+
 }
 
 @media screen and (max-width: 1200px) and (min-width: 900px) {
     .sideMenu{
         max-width: 25%;
     }
+
+    .mainPageSlider {
+        position: absolute;
+        top: 400px ;
+        left: 100px;
+        padding: 5px;
+    } 
 }
 
 @media screen and (max-width: 1800px) and (min-width: 1200px) {
@@ -215,6 +232,19 @@ p {
     box-shadow: 0 0 10px rgba(255, 86, 8, 1);
 }
 
+/* #myBtn {
+    position: absolute;
+    top: 350px;
+    left: 55px;
+} */
+
+#searchFormResultsPage {
+    position: absolute;
+    top: 0px;
+    left: 55px;
+    width: 75%;    
+}
+
 .searchButton {
     background-color: #CCD0DB;
     color: #FF5608; 
@@ -225,5 +255,45 @@ p {
     width: 250px;
     height: 125px;
     margin: 10px auto;
+
+}
+
+.navBarWidth {
+    max-width: 400px;
+}
+
+.mainNav {
+    padding: 0px;
+}
+
+.flexContainer {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+}
+
+.navMenuItem {
+    width: 50%;
+}
+.navItem {
+    width: 25%;
+    margin: auto;
+}
+
+.menuProfileStyle {
+    text-align: right;
+} 
+
+.mainPageSlider {
+    padding: 5px;
+} 
+
+.searchFormResultsPage {
+    max-width: 100vw;
+}
+
+.imageStyle {
+    width: 75%;
+    height: 75%;
 }
 
