@@ -8,6 +8,26 @@ $(document).ready(function() {
     // End Slider
 });
 
+// Donna to populate with data from Yelp
+var yelpPicArray = [
+    "http://s3-media3.fl.yelpcdn.com/bphoto/--8oiPVp0AsjoWHqaY1rDQ/o.jpg",
+    "http://s3-media2.fl.yelpcdn.com/bphoto/ybXbObsm7QGw3SGPA1_WXA/o.jpg",
+    "http://s3-media3.fl.yelpcdn.com/bphoto/7rZ061Wm4tRZ-iwAhkRSFA/o.jpg"
+]
+
+var imageHTML1 = "<div><img src='";
+var imageHTML2 = "' style='width:75%; height: auto;''></div>";
+
+for (let i = 0; i < yelpPicArray.length; i++) {
+    $(pictureDiv).append(
+        imageHTML1 +
+        yelpPicArray[i] +
+        imageHTML2
+    )
+}
+
+
+// ****************** Google Maps code
 
 var parameters = location.search.substring(1).split("&");  //console.log(parameters);
 

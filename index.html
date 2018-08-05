@@ -35,21 +35,27 @@ black: #000000
 </head>
 
 <body>
-        <button id=myBtn2>Start</button>
-      <nav class="navbar navbar-dark bg-dark sidebarNavigation" data-sidebarClass="navbar-dark bg-dark ">
-        <button class="navbar-toggler left-navbar-toggle" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <img src="assets/images/truva_text_small.png" alt="Truva Logo" id="topBarLogo">
-        <i class="fas fa-user" id="topBarProfileIcon"></i>
-
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li class="active menuItem"><a href="#">Search History</a></li>
-                <li class="active menuItem"><a href="#">Profile</a></li>
-                <li class="active menuItem"><a href="#">Log Off</a></li>
-            </ul>
-        </div>
+    <button id=myBtn2>Start</button>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark mainNav sidebarNavigation" data-sidebarClass="navbar-dark bg-dark ">
+          <div class="flexContainer">
+            <button class="navbar-toggler left-navbar-toggle " type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+              <div class="collapse navbar-collapse navMenuItem " id="myNavbar">
+                  <ul class="nav navbar-nav">
+                      <li class="active menuItem"><a href="#">Search History</a></li>
+                      <li class="active menuItem"><a href="#">Search</a></li>
+                      <li class="active menuItem"><a href="#">Profile</a></li>
+                      <li class="active menuItem"><a href="#">Log Off</a></li>
+                  </ul>
+              </div>
+              <div class="navItem logo ">
+                <img src="assets/images/truva_text_small.png" alt="Truva Logo" id="topBarLogo">
+              </div>
+              <div class="navItem menuProfileStyle ">
+                <i class="fas fa-user" id="topBarProfileIcon"></i>
+              </div>
+            </div>
     </nav>
     <img src="assets/images/main_page_pic2.jpg" id="mainPageImage" alt="Picture of a Restaurant with tables set">
     
@@ -65,11 +71,13 @@ black: #000000
       </div>
     </div>
 
-    <div id='slider'>
-      <div><img src="assets/images/restaurants_small.jpg" alt="Steak on a plate at a restaurant" ></div>
-      <div><img src="assets/images/nightlife_small.jpg" alt="Women dancing at a club" ></div>
-      <div><img src="assets/images/live_music_small.jpg" alt="People at a live music venue" ></div>
-      <div><img src="assets/images/drinks_small.jpg" alt="Bartender making drinks" ></div>
+    <div class="mainPageSlider">
+      <div id='slider'>
+        <div><img src="assets/images/restaurants_small.jpg" alt="Steak on a plate at a restaurant" ></div>
+        <div><img src="assets/images/nightlife_small.jpg" alt="Women dancing at a club" ></div>
+        <div><img src="assets/images/live_music_small.jpg" alt="People at a live music venue" ></div>
+        <div><img src="assets/images/drinks_small.jpg" alt="Bartender making drinks" ></div>
+      </div>
     </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
