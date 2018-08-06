@@ -21,7 +21,7 @@ black: #000000
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Truva</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
@@ -106,9 +106,8 @@ black: #000000
 
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <script src="assets/javascript/menu.js"></script>
-    <script src="assets/javascript/app.js"></script>
     <script src="assets/javascript/modal.js"></script>
     <script type="text/javascript" src="assets/javascript/slick.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -117,61 +116,9 @@ black: #000000
 <!--connect to firebase console-->
 <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
 <!--connect to database and start pushing / pulling data-->
-<!-- <script src="assets/javascript/app.js"></script> -->
+<script src="assets/javascript/app.js"></script>
+<!--kick it all off-->
 <script>
-    var myMap; 
-    function initMap(){
-        var markCenter = {lat: 32.776664, lng: -96.796988};
-            
-            myMap = new google.maps.Map(document.getElementById("map"), {
-                zoom: 13,
-                center: markCenter
-            });
-
-            var request = {
-                location: markCenter,
-                radius: 8800, //5-miles
-                types: [userData.searchCriteria]
-            };
-            console.log("search text 2: " + userData.searchCriteria);
-            var service = new google.maps.places.PlacesService(myMap); //console.log("service " + service);
-
-            service.nearbySearch(request, callback);
-
-        }//close initMap
-
-        function callback(results, status){
-            if(status == google.maps.places.PlacesServiceStatus.OK){
-                for (var i=0; i<results.length; i++){
-                    createMarker(results[i]);
-                }
-            }
-            //console.log("status = " + status);
-        }
-        
-        function createMarker(place){     //console.log(place);
-
-            var placeLoc = place.geometry.location;
-            var placeName = place.name;
-            var placeDescription = place.description;
-            var placeRating = place.rating;
-            var dynMarker = new google.maps.Marker({
-                map: myMap,
-                position: placeLoc,
-                name: placeName
-            });
-
-            dynMarker.addListener('click', function(){
-              //update page with search results data
-
-              $("#publicSpaceName").html(placeName);
-              $("#description").append();
-              $("#placeRating").html(placeRating);
-              $("#reviews").html("help");
-              $("#myModal").show();
-            });
-        }//end createMarker
-
 $(window).load(function(){
     initMap();
 });
