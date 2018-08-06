@@ -1,5 +1,5 @@
 var parameters = location.search.substring(1).split("&");  //console.log(parameters);
-displayRestaurants();
+
 if(parameters == 0){  //if there is no GET this is a new visitor - start afresh
     
     console.log("no params");
@@ -55,8 +55,12 @@ else if(parameters != 0){//if this has a GET, then save it and display it
     var userLat = lat2;
     var userLon = lon2;
 
-    $("#myBtn2").on("click", function(event) {//user in on index.html if they click myBtn2
+    $(".searchButton").on("click", function(event) {//user in on index.html if they click myBtn2
         event.preventDefault();
+        console.log('search text 1:' + userData.searchCriteria);
+        userData.searchCriteria = $(".searchField").val();
+        console.log('search text 1:' + userData.searchCriteria);
+
         //save search into database     //then go to newDetailViewPage.html and do FB search there
     
         //connect to firebase database
