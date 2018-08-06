@@ -44,8 +44,8 @@ black: #000000 */
 .sideMenu {
     left: -100%;
     top: 52px;
-    transition:all ease-in-out .4s;
-    overflow:hidden;
+    transition: all ease-in-out .4s;
+    overflow: hidden;
     width: 50%;
     max-width: 50%
 }

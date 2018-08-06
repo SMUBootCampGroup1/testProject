@@ -4,6 +4,7 @@ blue grey: #3A4042
 dark navy: #091324
 ultra light blue: #F4F5F2
 light grey blue: #CCD0DB
+medium grey: #8e9199
 sumo orange: #FF5608
 
 Complementary Colors:
@@ -14,16 +15,24 @@ white: #FFFFFF
 black: #000000
  */
 
- * {
+* {
     box-sizing: border-box;
 }
 
 body{
-    background-color: #9FA896;
+    background-color: #8e9199;
 }
 
 .borderOrange { /* for testing */
     border: 1px solid #FF5608
+}
+
+.btn {
+    font-family: 'PT Sans Narrow';
+}
+
+i {
+    color: #3A4042;
 }
   
 .fa-arrow-left {
@@ -199,6 +208,7 @@ p {
     width: 100%;
     height: auto;
     z-index: 0;
+    border-bottom:4px solid #FF5608;
 }
 
 .menuItem a {
@@ -255,7 +265,6 @@ p {
     width: 250px;
     height: 125px;
     margin: 10px auto;
-
 }
 
 .navBarWidth {
@@ -292,8 +301,128 @@ p {
     max-width: 100vw;
 }
 
-.imageStyle {
-    width: 75%;
-    height: 75%;
+#pictureDiv {
+    max-width: 100%;
+    max-height: 100%;
+    /* border: #FF5608 1px solid; */
 }
 
+.imageStyle {
+    display: block;
+    max-width: 25%;
+    max-height: 25%;
+    /* border: Red 1px solid; */
+}
+
+/* Search Results */
+#map {
+    height: 100vh;
+    /* margin: 5%;
+    padding: 3%; */
+    /* border: 1px solid #000; */
+  }
+
+.searchFormResultsPage {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Profile Page Style */
+
+.userName {
+    font-family: Oswald;
+    color: #3A4042;
+}
+
+.profile-text {
+    color: #3A4042;
+    font-family: 'PT Sans Narrow';
+    font-size: 12pt;
+}
+
+.profileSummary {
+    background: #F4F5F2;
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.col-centered {
+    float: none;
+    margin: 1px auto;
+    height: 250px;
+    background: #F4F5F2;
+    margin-top: 25px;
+}
+
+.profile-contact-info {
+    padding-left: 0;
+    padding-right: 0;
+    height: 150px;
+}
+
+.profileButton {
+    margin-top: 10px;
+    margin-right: 10px;
+    text-align: center;
+    background: #CCD0DB;
+    color: #FF5608;
+}
+
+.profileButtonText {
+    color: #FF5608;
+    margin: 2px;
+}
+
+.profileButton:focus {
+    border: 1px solid #FF5608;
+    box-shadow: 0 0 10px rgba(255, 86, 8, 1);
+}
+
+.profileSummary {
+    display: flex;
+    flex-direction: row;
+}
+
+.profileData {
+    width: 50%;
+    margin: 15px 5px;
+}
+
+.profileImage {
+    width: 50%;
+    margin: 15px;
+    text-align: right;
+}
+
+.avatar {
+    color: #FF5608;
+}
+
+.input-icon-wrap {
+    border: 1px solid #3A4042;    
+    display: flex;
+    flex-direction: row;
+}
+
+.input-icon {
+    background: #CCD0DB;
+    color: #FF5608;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+}
+
+.input-with-icon {
+    border: none;
+    flex: 1;
+}
+
+.input-icon, .input-with-icon {
+    padding: 10px;
+}
+
+
+  

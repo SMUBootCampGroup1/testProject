@@ -23,15 +23,6 @@ black: #000000
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
-    <style>
-        #map {
-          height: 100vh;
-          margin: 5%;
-          padding: 3%;
-          border: 1px solid #000;
-        }
-        
-     </style>
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/menu.css" />
@@ -42,9 +33,7 @@ black: #000000
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Cabin|Oswald|PT+Sans+Narrow" rel="stylesheet">
 </head>
-
 <body>
-
     <!-- Top Menu -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mainNav sidebarNavigation" data-sidebarClass="navbar-dark bg-dark ">
             <div class="flexContainer">
@@ -54,8 +43,8 @@ black: #000000
                 <div class="collapse navbar-collapse navMenuItem " id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li class="active menuItem"><a href="#">Search History</a></li>
-                        <li class="active menuItem"><a href="#">Search</a></li>
-                        <li class="active menuItem"><a href="#">Profile</a></li>
+                        <li class="active menuItem"><a href="index.html">Search</a></li>
+                        <li class="active menuItem"><a href="profile.html">Profile</a></li>
                         <li class="active menuItem"><a href="#">Log Off</a></li>
                     </ul>
                 </div>
@@ -80,7 +69,7 @@ black: #000000
     <!-- Trigger/Open The Modal -->
 
     <div id="map">
-        <p>Something went wrong with the map!</p>
+        <p id="errorMessage"></p>
     </div>
 
     <!-- The Modal -->
@@ -142,9 +131,9 @@ black: #000000
             var request = {
                 location: markCenter,
                 radius: 8800, //5-miles
-                types: ['night_club']
+                types: [userData.searchCriteria]
             };
-
+            console.log("search text 2: " + userData.searchCriteria);
             var service = new google.maps.places.PlacesService(myMap); //console.log("service " + service);
 
             service.nearbySearch(request, callback);
@@ -154,13 +143,13 @@ black: #000000
         function callback(results, status){
             if(status == google.maps.places.PlacesServiceStatus.OK){
                 for (var i=0; i<results.length; i++){
-                        createMarker(results[i]);
+                    createMarker(results[i]);
                 }
             }
             //console.log("status = " + status);
         }
         
-        function createMarker(place){     console.log(place);
+        function createMarker(place){     //console.log(place);
 
             var placeLoc = place.geometry.location;
             var placeName = place.name;
@@ -189,7 +178,5 @@ $(window).load(function(){
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyCGQ3BWlC0tCCwvAow0D0NYGrbet_Ye1g4&libraries=places&callback=initMap"></script>
 
-
 </body>
-
 </html>

@@ -17,7 +17,9 @@
         $('#pictureDiv').slick({
             fade: false,
             dots: false,
-            arrows: false
+            arrows: false,
+            mobileFirst: true,
+            variableWidth: true,
         });
     });
     
