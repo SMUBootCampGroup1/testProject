@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
     // Slider
     $('#slider').slick({
@@ -8,24 +7,27 @@ $(document).ready(function() {
     // End Slider
 });
 
+var userData = {
+    searchCriteria: "",
+}
+
 // Donna to populate with data from Yelp
 var yelpPicArray = [
-    "http://s3-media3.fl.yelpcdn.com/bphoto/--8oiPVp0AsjoWHqaY1rDQ/o.jpg",
     "http://s3-media2.fl.yelpcdn.com/bphoto/ybXbObsm7QGw3SGPA1_WXA/o.jpg",
-    "http://s3-media3.fl.yelpcdn.com/bphoto/7rZ061Wm4tRZ-iwAhkRSFA/o.jpg"
+    "http://s3-media3.fl.yelpcdn.com/bphoto/7rZ061Wm4tRZ-iwAhkRSFA/o.jpg",
+    "http://s3-media3.fl.yelpcdn.com/bphoto/--8oiPVp0AsjoWHqaY1rDQ/o.jpg"
 ]
 
 var imageHTML1 = "<div><img src='";
-var imageHTML2 = "' style='width:75%; height: auto;''></div>";
+var imageHTML2 = "' class='imageStyle'></div>";
 
 for (let i = 0; i < yelpPicArray.length; i++) {
-    $(pictureDiv).append(
+    $("#pictureDiv").append(
         imageHTML1 +
         yelpPicArray[i] +
         imageHTML2
     )
 }
-
 
 // ****************** Google Maps code
 
@@ -71,8 +73,12 @@ if(parameters != 0){//if this has a GET, then save it and display it
     var userLat = lat2;
     var userLon = lon2;
 
-    $("#myBtn2").on("click", function(event) {//user in on index.html if they click myBtn2
+    $(".searchButton").on("click", function(event) {//user in on index.html if they click myBtn2
         event.preventDefault();
+        console.log('search text 1:' + userData.searchCriteria);
+        userData.searchCriteria = $(".searchField").val();
+        console.log('search text 1:' + userData.searchCriteria);
+
         //save search into database     //then go to newDetailViewPage.html and do FB search there
     
         //connect to firebase database
