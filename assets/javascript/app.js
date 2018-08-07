@@ -158,10 +158,11 @@ function initMap() {
         location: markCenter,
         radius: 8800, //5-miles
         types: ['restaurant', 'cafe', 'food']
+        //types: ['night_club']
     };
 
-    var service = new google.maps.places.PlacesService(myMap); //console.log("service " + service);
-
+    var service = new google.maps.places.PlacesService(myMap); 
+    //console.log("service " + service);
     service.nearbySearch(request, callback);
 
 }//close initMap
@@ -174,7 +175,8 @@ function callback(results, status) {
     }
 }//close callback
 
-function createMarker(place) { console.log(place);
+function createMarker(place) { 
+    console.log(place);
     var placeLoc = {
         lat: place.geometry.location.lat(),
         lng: place.geometry.location.lng()
@@ -187,75 +189,116 @@ function createMarker(place) { console.log(place);
         name: placeName
     });
 
-    dynMarker.addListener('click', function () {  console.log(this.name); console.log("this name");
-        if(place.opening_hours.open_now == 'false'){
-            varOpenNow = 'Open Now';
-        }
-        else if (place.opening_hours.open_now == 'true'){
-            varOpenNow = "Closed";
-        }
-        else{varOpenNow = "Closed";}
+    dynMarker.addListener('click', function () {
+        // if(place.opening_hours.open_now == 'false'){
+        //     varOpenNow = 'Open Now';
+        // }
+        // else if (place.opening_hours.open_now == 'true'){
+        //     varOpenNow = "Closed";
+        // }
+        // else{varOpenNow = "Closed";}
+
+        var nameToFind = this.name; 
+        console.log(nameToFind);
+        var queryURL = 
+        "https://developers.zomato.com/api/v2.1/search?q=" + nameToFind + "&lat=" + placeLoc.lat + "&lon=" + placeLoc.lng;
+        //"https://developers.zomato.com/api/v2.1/search?lat=" + placeLoc.lat + "&lon=" + placeLoc.lng;
+
+        $.ajax({  //Ajax call 1
+            type: "GET",
+            headers: { "X-Zomato-API-Key": "1747b7fcad14ac3af99c8b42a5eac0d7" },
+            url: queryURL,
+            success: function (response) {
+
+                userData.idToFind = response.restaurants['0'].restaurant.R.res_id; 
+                console.log("id = " + userData.idToFind);
+
+                var queryURL2 = "https://developers.zomato.com/api/v2.1/restaurant?res_id=" + userData.idToFind;
+            
+                    $.ajax({ //Ajax call 2
+                        type: "GET",
+                        headers: { "X-Zomato-API-Key": "1747b7fcad14ac3af99c8b42a5eac0d7" },
+                        url: queryURL2,
+                        success: function (response) {
+                            var results2 = response;
+                            console.log(results2);
+
+                            console.log(results2.id);
+                            console.log(results2.name);
+
+                        }//end Success 2
+                    });//end Ajax 2
+                }//end Success 1
+            });//end Ajax 1
+
+// Images
         var imageHTML1 = "<div><img src='";
         var imageHTML2 = "' class='imageStyle'></div>";
         //for (let i = 0; i < yelpPicArray.length; i++) {
-            $("#pictureDiv").append(
-                imageHTML1 +
-                place.photos[0].html_attributions +
-                imageHTML2
-            );
+            // $("#pictureDiv").append(
+            //     imageHTML1 +
+            //     place.photos[0].html_attributions +
+            //     imageHTML2
+            // );
         //}
-        //update page with search results data
+// End Images
+
+// Update page with search results data
+
         $("#publicSpaceName").html(this.name);
-        $("#header").append(varOpenNow + place.price_level); console.log(place.photos[0].getUrl()); console.log("photo");
+        // $("#header").append(varOpenNow + place.price_level); 
+        // console.log(place.photos[0].getUrl());
         //$("#pictureDiv").attr("src", place.photos.html_attributions).css('width', '100%');
         $("#placeRating").html( place.rating );
         $("#reviews").html("reviews here");
-        $("#myModal").show();
-        $("#map").hide();
+        //$("#myModal").show();
+
     });
 }//end createMarker
 
-/*
-function getRestID(nm, la, lo) {
-    //var idToFind = "";
-    var spacePos = nm.indexOf(" ");
-    var nameToFind = nm.substring(0,spacePos); //console.log(nameToFind);
-    var queryURL = "https://developers.zomato.com/api/v2.1/search?q=" + nameToFind + "&lat=" + la + "&lon=" + lo;
+// function getRestID(nm, la, lo) {
+//     //var idToFind = "";
+//     var spacePos = nm.indexOf(" ");
+//     var nameToFind = nm.substring(0,spacePos); //console.log(nameToFind);
+//     var queryURL = 
+//     "https://developers.zomato.com/api/v2.1/search?q=" + nameToFind + "&lat=" + la + "&lon=" + lo;
     
-    $.ajax({
-        type: "GET",
-        headers: { "X-Zomato-API-Key": "1747b7fcad14ac3af99c8b42a5eac0d7" },
-        url: queryURL,
-        success: function (response) {
+//     $.ajax({
+//         type: "GET",
+//         headers: { "X-Zomato-API-Key": "1747b7fcad14ac3af99c8b42a5eac0d7" },
+//         url: queryURL,
+//         success: function (response) {
 
-            var results = response.restaurants; //console.log(results); console.log("results")
+//             var results = response.restaurants; //console.log(results); console.log("results")
 
-            //for (var i = 0; i < results.length; i++) {
-                //console.log(results); console.log(" gotcha");
-                //var resultName = response.restaurants['0'].restaurant.name;
-                //if (resultName == nameToFind) {
-                    userData.idToFind = response.restaurants['0'].restaurant.R.res_id; console.log("id = " + userData.idToFind);
+//             //for (var i = 0; i < results.length; i++) {
+//                 //console.log(results); console.log(" gotcha");
+//                 //var resultName = response.restaurants['0'].restaurant.name;
+//                 //if (resultName == nameToFind) {
+//                     userData.idToFind = response.restaurants['0'].restaurant.R.res_id; 
+//                     console.log("id = " + userData.idToFind);
+//                     return userData.idToFind;
                     
-                //}//end if resultname = nameToSearch
-            //}//end for i
-        }//end success1
-    });//end ajax1
-    return userData.idToFind;
-    //console.log("id" + idToFind);
-}//end function getRestID
+//                 //}//end if resultname = nameToSearch
+//             //}//end for i
+//         }//end success1
+//     });//end ajax1
+//     return userData.idToFind;
+//     //console.log("id" + idToFind);
+// }//end function getRestID
 
-function showRestDetails() {
-    var queryURL2 = "https://developers.zomato.com/api/v2.1/restaurant?res_id=" + id;
-                     https://developers.zomato.com/api/v2.1/search?q=Central%20Perk&lat=35.17938&lon=-95.1698
+// function showRestDetails(id) {
+//     var queryURL2 = "https://developers.zomato.com/api/v2.1/restaurant?res_id=" + id;
+//     //https://developers.zomato.com/api/v2.1/search?q=Central%20Perk&lat=35.17938&lon=-95.1698
 
-    $.ajax({
-        type: "GET",
-        headers: { "X-Zomato-API-Key": "1747b7fcad14ac3af99c8b42a5eac0d7" },
-        url: queryURL2,
-        success: function (response) {
-            var results2 = response;
-            console.log(results2); console.log(" DEUX ");            
-        }//end success2
-    });//end ajax2
-}//end function showRestDetail
-*/
+//     $.ajax({
+//         type: "GET",
+//         headers: { "X-Zomato-API-Key": "1747b7fcad14ac3af99c8b42a5eac0d7" },
+//         url: queryURL2,
+//         success: function (response) {
+//             var results2 = response;
+//             console.log(results2); 
+//             console.log(" DEUX ");            
+//         }//end success2
+//     });//end ajax2
+// }//end function showRestDetail
