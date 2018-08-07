@@ -28,34 +28,43 @@ black: #000000
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/menu.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/slick.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/slick-theme.css" />
-    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Cabin|Oswald|PT+Sans+Narrow" rel="stylesheet">
 </head>
+
 <body>
     <!-- Top Menu -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mainNav sidebarNavigation" data-sidebarClass="navbar-dark bg-dark ">
-            <div class="flexContainer">
-              <button class="navbar-toggler left-navbar-toggle " type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
-                <div class="collapse navbar-collapse navMenuItem " id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li class="active menuItem"><a href="#">Search History</a></li>
-                        <li class="active menuItem"><a href="index.html">Search</a></li>
-                        <li class="active menuItem"><a href="profile.html">Profile</a></li>
-                        <li class="active menuItem"><a href="#">Log Off</a></li>
-                    </ul>
-                </div>
-                <div class="navItem logo ">
-                  <img src="assets/images/truva_text_small.png" alt="Truva Logo" id="topBarLogo">
-                </div>
-                <div class="navItem menuProfileStyle ">
-                  <i class="fas fa-user" id="topBarProfileIcon"></i>
-                </div>
-              </div>
-      </nav>
+        <div class="flexContainer">
+            <button class="navbar-toggler left-navbar-toggle " type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarNavDropdown"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse navMenuItem " id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active menuItem">
+                        <a href="#">Search History</a>
+                    </li>
+                    <li class="active menuItem">
+                        <a href="index.html">Search</a>
+                    </li>
+                    <li class="active menuItem">
+                        <a href="profile.html">Profile</a>
+                    </li>
+                    <li class="active menuItem">
+                        <a href="#">Log Off</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="navItem logo ">
+                <img src="assets/images/truva_text_small.png" alt="Truva Logo" id="topBarLogo">
+            </div>
+            <div class="navItem menuProfileStyle ">
+                <i class="fas fa-user" id="topBarProfileIcon"></i>
+            </div>
+        </div>
+    </nav>
     <!-- End Top Menu -->
     <div class="input-group input-group-sm mb-3 searchFormResultsPage">
         <input type="text" class="form-control searchField" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
@@ -91,7 +100,7 @@ black: #000000
 
             <div id="typeAndRating">
                 <h3>
-                    Rating: 
+                    Rating:
                     <span id="placeRating"></span>
                     of 5
                 </h3>
@@ -112,18 +121,15 @@ black: #000000
     <script type="text/javascript" src="assets/javascript/slick.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-    <!--database interaction scripts-->
-<!--connect to firebase console-->
-<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
-<!--connect to database and start pushing / pulling data-->
-<script src="assets/javascript/app.js"></script>
-<!--kick it all off-->
-<script>
-$(window).load(function(){
-    initMap();
-});
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyCGQ3BWlC0tCCwvAow0D0NYGrbet_Ye1g4&libraries=places&callback=initMap"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+    <script src="assets/javascript/app.js"></script>
 
+    <script>
+        $(window).load(function () {
+            initMap();
+        });
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyA2vUH0VNZTN4oDF1JXqmFtUT81wHMKNdw&libraries=places&callback=initMap"></script>
 </body>
+
 </html>
