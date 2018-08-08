@@ -13,11 +13,11 @@ white: #FFFFFF
 black: #000000 */
 
 
-.overlay,.sideMenu{
+.overlay,.sideMenu {
     position:fixed;
     bottom:0
 }
-.overlay{
+.overlay {
     top:0;
     left:-100%;
     right:100%;
@@ -26,7 +26,8 @@ black: #000000 */
     z-index:998;
     transition:all ease 20ms
 }
-.sideMenu,.sidebarNavigation{
+
+.sideMenu,.sidebarNavigation {
     z-index: 999;
     margin-bottom: 0
 }
@@ -35,6 +36,7 @@ black: #000000 */
     left:0;
     right:0
 }
+
 .sidebarNavigation .left-navbar-toggle {
     float:left;
     margin-right: 0;
@@ -43,7 +45,7 @@ black: #000000 */
 
 .sideMenu {
     left: -100%;
-    top: 52px;
+    top: 55px;
     transition: all ease-in-out .4s;
     overflow: hidden;
     width: 50%;
