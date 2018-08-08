@@ -1,28 +1,62 @@
 var parameters = location.search.substring(1).split("&");  //console.log(parameters);
 var firstPos, kywd, dist, lat, lon, sessionID, searchID, myMap; //global variables to pass in GET
+
+console.log(firstPos + " " + kywd + " " + dist + " " + lat + " " + lon + " " + sessionID + " " + searchID + " " + myMap);
+
 var userData = {
-    searchCriteria: ""
+    searchCriteria: "",
+    searchPOS: ""
 };
 
-if (parameters == 0) {  //if there is no GET this is a new visitor - start afresh
-    //go get their geo coordinates
-    getAutoGEO();//this function will take care or resetting the webpage when done
-}//end if parameters == 0
 
-else if (parameters != 0) { //if there IS a GET then process the user's search input
+// if (parameters == 0) {  //if there is no GET this is a new visitor - start afresh
+//     //go get their geo coordinates
+//     getAutoGEO();//this function will take care or resetting the webpage when done
+// }//end if parameters == 0
+
+if (parameters != 0) { //if there IS a GET then process the user's search input
     var keepCount = 0;
-    parameters.forEach(function (entry) {
-        var splitPoint = entry.indexOf("=") + 1;
-        switch (keepCount) {
-            case 0: kywd = entry.substring(splitPoint);
-            case 1: dist = entry.substring(splitPoint);
-            case 2: lat = entry.substring(splitPoint);
-            case 3: lon = entry.substring(splitPoint);
-            case 4: sessionID = entry.substring(splitPoint);
-            case 5: searchID = entry.substring(splitPoint);
+
+    for (let p = 0; p < parameters.length; p ++) {
+       if (parameters[p]) {
+        var splitPoint = parameters[p].indexOf("=") + 1;
+        switch (p) {
+            case 0: kywd = parameters[p].substring(splitPoint); 
+            case 1: dist = parameters[p].substring(splitPoint);
+            case 2: lat = parameters[p].substring(splitPoint);
+            case 3: lon = parameters[p].substring(splitPoint);
+            case 4: sessionID = parameters[p].substring(splitPoint);
+            case 5: searchID = parameters[p].substring(splitPoint);
         } //end switch
-        keepCount++;
-    });//end parameters.forEach    
+       }
+       else {
+            var splitPoint = parameters[p].indexOf("=") + 1;
+            switch (p) {
+                case 0: kywd = "";
+                case 1: dist = "";
+                case 2: lat = "";
+                case 3: lon = "";
+                case 4: sessionID = "";
+                case 5: searchID = "";
+            }
+       }
+    }
+
+        // parameters.forEach(function (;) {
+        //     var splitPoint = entry.indexOf("=") + 1;
+        //     switch (keepCount) {
+        //         case 0: kywd = entry.substring(splitPoint); 
+        //         case 1: dist = entry.substring(splitPoint);
+        //         case 2: lat = entry.substring(splitPoint);
+        //         case 3: lon = entry.substring(splitPoint);
+        //         case 4: sessionID = entry.substring(splitPoint);
+        //         case 5: searchID = entry.substring(splitPoint);
+        //     } //end switch
+        //     keepCount++;
+        //}); //end parameters.forEach    
+    console.log(firstPos + " " + kywd + " " + dist + " " + lat + " " + lon + " " + sessionID + " " + searchID + " " + myMap);
+
+    // setSlider();
 
 }
 
@@ -30,11 +64,15 @@ setSlider();
 
 //Events====================================================
 
-$(".searchButton").on("click", function (event) {//user in on index.html if they click myBtn2
+$(".searchButton").on("click", function (event) {//user in on index.html if they click searchButton
     event.preventDefault();//prevent enter button causing havoc
+
     userData.searchCriteria = $(".searchField").val();//get user input
 
-    saveSearch(userData.searchCriteria);//save it to db and get the new record key
+    var nextPage = "search_results.html?kywd=" + userData.searchCriteria;  //+ "&lat=" + lat + "&lon=" + lon + "&sesID=" + sessionID;
+    location.replace(nextPage);
+
+    // saveSearch(userData.searchCriteria, dist, lat, lon, sessionID);//save it to db and get the new record key
     //this function will take us to search_results page and map with map pins when its done
 });
 
@@ -48,27 +86,34 @@ function setSlider() {
 }// end setSlider
 
 function getAutoGEO() {
-    console.log($(".searchField").val());
     var pos = "";
-    if (navigator.geolocation) {
+    if (navigator.geolocation) { console.log("AutoGEO");
         navigator.geolocation.getCurrentPosition(function (position) {
             pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-            setTimeout(function () {//don't activate the page at all until geo location is obtained
-                if (pos != "") {
-                    kywd = $(".searchField").val();
+
+            // return pos;
+            userData.searchPOS = pos;
+
+            //setTimeout(function () {//don't activate the page at all until geo location is obtained
+                // if (pos != "") {
+                //     kywd = "";
                     dist = "8800";
                     lat = pos.lat;
                     lon = pos.lng;
-                    // sessionID = initSession();
-                    var nextPage = "index.html?kywd=" + kywd + "&dist=" + dist + "&lat=" + lat + "&lon=" + lon + "&sesID=''"; // + sessionID;
-                    location.replace(nextPage);
-                }
-            }, 2500);
+                    sessionID = initSession();
+                console.log("search_results.html?kywd=" + kywd + "&dist=" + dist + "&lat=" + lat + "&lon=" + lon + "&sesID=" + sessionID);
+                var nextPage = "search_results.html?kywd=" + kywd + "&dist=" + dist + "&lat=" + lat + "&lon=" + lon + "&sesID=" + sessionID;
+                //location.replace(nextPage);
+                // }
+           //}, 2500);
         });
+
+        //initMap();
     }
+    
 }//END FUNCTION getAutoGEO
 
 function makeTimestamp() {
@@ -106,39 +151,35 @@ function initSession() {
     return newSessionID;
 }//end function initSession
 
-function saveSearch(k) {
-    // var dateOfSearch = makeTimestamp();
+function saveSearch(k, d, la, lo, sesID) {
+    var dateOfSearch = makeTimestamp();
     //connect to firebase database
     var refTheDatabaseRoot = initFirebase();
 
     searchID = refTheDatabaseRoot.ref('/searchEvents').push({
-        // searchSessionID: sesID,
-        // searchDate: dateOfSearch,
+        searchSessionID: sesID,
+        searchDate: dateOfSearch,
         searchKeyword: k,
-        // searchDistance: d,
-        // searchLat: la,
-        // searchLon: lo,
-        // searchNumResults: 0,
-        // searchJSONbody: ""
+        searchDistance: d,
+        searchLat: la,
+        searchLon: lo,
+        searchNumResults: 0,
+        searchJSONbody: ""
     }).getKey();
 
     refTheDatabaseRoot.ref('/searchEvents').on("value", function (snapshot) {
         var mySnapshot = snapshot.val(); //console.log(mySnapshot); console.log(" AND THAT WAS mySnapshot");
         var snapKeys = Object.keys(mySnapshot); //console.log(snapKeys); console.log(" - snapkeys ");
         var searchRecordToShow = '';
+        for (var j = 0; j < snapKeys.length; j++) {
 
-        var searchHistoryList = [];
-        searchHistoryList.push(searchID);
+            if (snapKeys[j] == searchID) {//if we're at the record that matches our key of choice...
+                searchRecordToShow = mySnapshot[snapKeys[j]];//this is our record
+            }//end if iterKey == thisSearchKey
+        }//end for i loop
 
-        // for (var j = 0; j < snapKeys.length; j++) {
-
-        //     if (snapKeys[j] == searchID) {//if we're at the record that matches our key of choice...
-        //         searchRecordToShow = mySnapshot[snapKeys[j]];//this is our record
-        //     }//end if iterKey == thisSearchKey
-        // }//end for i loop
-
-        var nextPage = "search_results.html?kywd=" + k + "&dist=" + dist + "&lat=" + lat + "&lon=" + lon + "&sesID=''" // + sessionID + "&seaID=" + searchID;
-        location.replace(nextPage);
+        // var nextPage = "search_results.html?kywd=" + k + "&dist=" + d + "&lat=" + la + "&lon=" + lo + "&sesID=" + sessionID + "&seaID=" + searchID;
+        // location.replace(nextPage);
     });//end searchEvents on value
 }//end function saveSearch
 
@@ -147,6 +188,8 @@ function initMap() {
     var autoLat = parseFloat(lat); var autoLon = parseFloat(lon);
     var markCenter = { lat: autoLat, lng: autoLon };
 
+        console.log(markCenter);
+    console.log("search: " + kywd);
     myMap = new google.maps.Map(document.getElementById("map"), {
         zoom: 13,
         center: markCenter
@@ -155,9 +198,7 @@ function initMap() {
     var request = {
         location: markCenter,
         radius: 8800, //5-miles
-        // types: ['restaurant', 'cafe', 'food']
         types: [kywd]
-        //types: ['night_club']
     };
 
     var service = new google.maps.places.PlacesService(myMap); 
@@ -207,8 +248,8 @@ function createMarker(place) {
             url: queryURL,
             success: function (response) {
 
-                userData.idToFind = response.restaurants['0'].restaurant.R.res_id; 
-                console.log("id = " + userData.idToFind);
+                userData.idToFind = response.restaurants['0'].restaurant.R.res_id;
+                // console.log("id = " + userData.idToFind);
 
                 var queryURL2 = "https://developers.zomato.com/api/v2.1/restaurant?res_id=" + userData.idToFind;
             
@@ -277,16 +318,13 @@ function createMarker(place) {
         //}
 // End Images
 
-// Update page with search results data
-
-        $("#publicSpaceName").html(this.name);
-        // $("#header").append(varOpenNow + place.price_level); 
-        // console.log(place.photos[0].getUrl());
-        //$("#pictureDiv").attr("src", place.photos.html_attributions).css('width', '100%');
-        $("#placeRating").html( place.rating );
-        $("#reviews").html("reviews here");
-        //$("#myModal").show();
 
     });
 }//end createMarker
 
+// Allows user to click of the modal and close
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
