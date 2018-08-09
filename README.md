@@ -1,43 +1,50 @@
-# testProject
-testProject for the group to see if we can clone, fork, and merge code
+# Truva
+Restaurant Search Curator
+(Kayak for Restaurants)
 
--Project Managment
---Trello with Agile Development Sprint
+# Live Link
+<a href=https://smubootcampgroup1.github.io/testProject/>
+    <img src=assets/images/truva_live_link_on_github.png>
+</a>
 
--Design
---Adobe XD
+# What It Does
+- Trying to decide where to eat? No need to go to multiple websites to find ratings, reviews and pix of a restaurant.
+- Truva will go get extra information for you and add it to the standard Google Places info you get from Google Maps.
+- User who is searching for restaurant is shown a Google Map.
+- There are map pins displayed which represents all the establishments within a 5-mile radius.
+- When the user selects a particular restaurant by clicking on its map pin,
+- User is shown a modal with full restaurant details including picture, open now?, price range, rating, link to menu
+- They can easily return to map and choose at a different restaurant
 
---CSS Framework
---Bootstrap page layout
---Bootstrap Navigation menu
+# Requirements
+- Build an app that utilizes data from two APIs
+- Utilize AJAX calls
+- Utilize database storage
+- Include user input forms, validation and data saving
+- Include database output pages such as a search history
+- Host it and demonstrate successful functionality live
 
--New library
---FontAwesome
---Slick JS
+# Technologies Used
+- Project mgmt: Trello with Agile Development Sprint
+- Design: Adobe XD
+- CSS Framework
+- Bootstrap page layout
+- Bootstrap Navigation menu
+- FontAwesome
+- Slick JS
+- Google Maps/Places API
+- Zomato API
+- UI: Modal and forms (Bootstrap form, we added input field validation)
+- Backend: Firebase Realtime Database
+- Hosting: Firebase Hosting
 
--APIs
---Google Maps/Places
---Zomato
+# Color pallet
+- Main Pallet:
+    blue grey: #3A4042
+    dark navy: #091324
+    ultra light blue:  #F4F5F2
+    light grey blue: #CCD0DB
+    sumo orange: #FF5608
 
--UI
---Modal and forms
-
--Backend
---Firebase Realtime Database
---Firebase Hosting
-
--User Input
---Bootstrap Form on the Profile Page with form validation
---
-
--Repeating Element
---Search History page with dynamically created list from Firebase
-
--Color pallet
---Main Pallet:
----blue grey: #3A4042
----dark navy: #091324
----ultra light blue:  #F4F5F2
----light grey blue: #CCD0DB
----sumo orange: #FF5608
+No one maintains it at present
 
