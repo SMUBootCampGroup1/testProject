@@ -1,0 +1,431 @@
+/* 
+Main Pallet:
+blue grey: #3A4042
+dark navy: #091324
+ultra light blue: #F4F5F2
+light grey blue: #CCD0DB
+medium grey: #8e9199
+sumo orange: #FF5608
+
+Complementary Colors:
+periwinkle: #A485A8
+light flat green: #9FA896
+
+white: #FFFFFF
+black: #000000
+ */
+
+* {
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #8e9199;
+}
+
+.borderOrange { /* for testing */
+    border: 1px solid #FF5608
+}
+
+.btn {
+    font-family: 'PT Sans Narrow';
+}
+
+i {
+    color: #3A4042;
+}
+  
+.fa-arrow-left {
+    color: black;
+    opacity: 0.85;
+}
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 20; /* Sit on top */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: auto; /* Enable scroll if needed */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    font-size: 1.1em;
+    color: white;
+    margin: 30% auto; /* 15% from the top and centered */
+    padding: 20px;
+    width: 70%;
+    height: 65%;
+    overflow: auto; /* Enable scroll if needed */
+    border: #fff solid 1px; /* Could be more or less, depending on screen size */
+    /* background: linear-gradient(to bottom, rgba(255,86,8, 0.6), rgba(0,0,0,0.65)); */
+    background-color: #3A4042;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+}
+
+h3, p {
+    text-shadow: none;
+    text-align: left;
+    font-family: 'PT Sans Narrow', sans-serif;
+}
+
+h3 {
+    font-size: 1.43em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+/* The Close Button */
+.close {
+    display: none;
+    color: black;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    float: right;
+    text-shadow: none;
+    position: relative;
+    right: 50%;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#header {
+    text-align: center;
+}
+
+#publicSpaceName {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2em;
+}
+
+#pictureDiv {
+    padding-bottom: 0;
+    text-align: center;
+}
+
+#pictureDiv i {
+    float: left;
+    position: relative;
+    top: 130px;
+    margin: 0 2.5px;
+}
+
+#picture {
+    float: left;
+    border: #000
+    3px solid;
+    width: 95%;
+}
+
+#priceAndRating {
+    padding-bottom: 10px;
+    padding-left: 10px;
+    margin-top: 100px;
+}
+
+.fa, .fas {
+    font-weight: 900;
+    padding-top: 10px;
+}
+
+@media screen and (max-width: 900px) and (min-width: 600px) {
+    .sideMenu{
+        max-width: 30%;
+    }
+
+    .searchForm {
+        max-width: 60%;
+    }
+
+    .mainPageSlider {
+        position: absolute;
+        top: 400px ;
+        left: 100px;
+        padding: 5px;
+    } 
+
+}
+
+@media screen and (max-width: 1200px) and (min-width: 900px) {
+    .sideMenu{
+        max-width: 25%;
+    }
+
+    .mainPageSlider {
+        position: absolute;
+        top: 400px ;
+        left: 100px;
+        padding: 5px;
+    } 
+}
+
+@media screen and (max-width: 1800px) and (min-width: 1200px) {
+    .sideMenu{
+        max-width: 20%;
+    }
+
+    .searchForm {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 2200px) and (min-width: 1800px) {
+    .sideMenu{
+        max-width: 15%;
+    }
+
+    .searchForm {
+        max-width: 30%;
+    }
+
+}
+
+
+/* Search Screen */
+.fa-user {
+    color: white;
+    font-size: 2em;
+}
+
+#mainPageImage {
+    width: 100%;
+    height: auto;
+    z-index: 0;
+    border-bottom:4px solid #FF5608;
+}
+
+.menuItem a {
+    margin: 0px 15px;
+    font-family: Cabin, sans-serif;
+    font-size: 1.5em;
+    color: #CCD0DB;
+}
+
+.tagLine {
+    position: absolute;
+    top: 275px;
+    left: 55px;
+    font-family: Oswald, sans-serif;
+    color: #fff;
+}
+
+.searchForm {
+    position: absolute;
+    top: 350px;
+    left: 55px;
+    width: 75%;
+}
+
+.searchField {
+    border: 1px solid #FF5608; 
+}
+
+.searchField:focus {
+    border: 1px solid #FF5608;
+    box-shadow: 0 0 10px rgba(255, 86, 8, 1);
+}
+
+/* #myBtn {
+    position: absolute;
+    top: 350px;
+    left: 55px;
+} */
+
+#searchFormResultsPage {
+    position: absolute;
+    top: 0px;
+    left: 55px;
+    width: 75%;    
+}
+
+.searchButton {
+    background-color: #CCD0DB;
+    color: #FF5608; 
+    border: 1px solid #FF5608; 
+}
+
+#slider{
+    width: 250px;
+    height: 125px;
+    margin: 10px auto;
+}
+
+.navBarWidth {
+    max-width: 400px;
+}
+
+.mainNav {
+    padding: 0px;
+}
+
+.flexContainer {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+}
+
+.navMenuItem {
+    width: 50%;
+}
+.navItem {
+    width: 25%;
+    margin: auto;
+}
+
+.menuProfileStyle {
+    text-align: right;
+} 
+
+.mainPageSlider {
+    padding: 5px;
+} 
+
+.searchFormResultsPage {
+    max-width: 100vw;
+}
+
+#pictureDiv {
+    max-width: 100%;
+    max-height: 100%;
+    /* border: #FF5608 1px solid; */
+}
+
+.imageStyle {
+    display: block;
+    max-width: 25%;
+    max-height: 25%;
+    /* border: Red 1px solid; */
+}
+
+/* Search Results */
+#map {
+    height: 100vh;
+    /* margin: 5%;
+    padding: 3%; */
+    /* border: 1px solid #000; */
+  }
+
+.searchFormResultsPage {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Profile Page Style */
+
+.userName {
+    font-family: Oswald;
+    color: #3A4042;
+}
+
+.profile-text {
+    color: #3A4042;
+    font-family: 'PT Sans Narrow';
+    font-size: 12pt;
+}
+
+.profileSummary {
+    background: #F4F5F2;
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.col-centered {
+    float: none;
+    margin: 1px auto;
+    height: 250px;
+    background: #F4F5F2;
+    margin-top: 25px;
+}
+
+.profile-contact-info {
+    padding-left: 0;
+    padding-right: 0;
+    height: 150px;
+}
+
+.profileButton {
+    margin-top: 10px;
+    margin-right: 10px;
+    text-align: center;
+    background: #CCD0DB;
+    color: #FF5608;
+}
+
+.profileButtonText {
+    color: #FF5608;
+    margin: 2px;
+}
+
+.profileButton:focus {
+    border: 1px solid #FF5608;
+    box-shadow: 0 0 10px rgba(255, 86, 8, 1);
+}
+
+.profileSummary {
+    display: flex;
+    flex-direction: row;
+}
+
+.profileData {
+    width: 50%;
+    margin: 15px 5px;
+}
+
+.profileImage {
+    width: 50%;
+    margin: 15px;
+    text-align: right;
+}
+
+.avatar {
+    color: #FF5608;
+}
+
+.input-icon-wrap {
+    border: 1px solid #3A4042;    
+    display: flex;
+    flex-direction: row;
+}
+
+.input-icon {
+    background: #CCD0DB;
+    color: #FF5608;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+}
+
+.input-with-icon {
+    border: none;
+    flex: 1;
+}
+
+.input-icon, .input-with-icon {
+    padding: 10px;
+}
+
+
+.error {
+    margin: 5px;
+    color: red;
+}
