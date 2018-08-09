@@ -4,7 +4,7 @@ Restaurant Search Curator
 
 # Live Link
 <a href=https://smubootcampgroup1.github.io/testProject/>
-    <img src=assets/images/truva_live_link_for_github.png>
+    <img src=assets/images/truva_live_link_on_github.png>
 </a>
 
 # What It Does
