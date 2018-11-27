@@ -25,7 +25,7 @@ app.get("/", function(req, res) {
 });
 
 app.get("/googlebaeb2747edb6a20f.html", function(req, res) {
-  res.sendFile(path.join(__dirname, "googlebaeb2747edb6a20f.html"));
+  res.sendFile(path.join(__dirname, "./googlebaeb2747edb6a20f.html"));
 });
 
 app.listen(PORT, function() {
