@@ -13,7 +13,6 @@ app.use(bodyParser.json());
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("./public"));
 
-
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/truva";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
@@ -23,6 +22,10 @@ app.get("/", function(req, res) {
     console.log(data);
     res.sendFile(path.join(__dirname, "index.html"));
   });
+});
+
+app.get("/googlebaeb2747edb6a20f.html", function(req, res) {
+  res.sendFile(path.join(__dirname, "googlebaeb2747edb6a20f.html"));
 });
 
 app.listen(PORT, function() {
