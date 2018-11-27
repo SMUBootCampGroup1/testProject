@@ -34,7 +34,7 @@ $(".searchButton").on("click", function (event) {//user in on index.html if they
     event.preventDefault();//prevent enter button causing havoc
     userData.searchCriteria = $(".searchField").val();//get user input
 
-    saveSearch(userData.searchCriteria);//save it to db and get the new record key
+    //saveSearch(userData.searchCriteria);//save it to db and get the new record key
     //this function will take us to search_results page and map with map pins when its done
 });
 
@@ -71,76 +71,60 @@ function getAutoGEO() {
     }
 }//END FUNCTION getAutoGEO
 
-function makeTimestamp() {
-    //set working variables of our own
-    var dt = new Date();
-    var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-    return dt + time;
-}
+// function makeTimestamp() {
+//     //set working variables of our own
+//     var dt = new Date();
+//     var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+//     return dt + time;
+// }
 
-function initFirebase() {
-    var config = {
-        apiKey: "AIzaSyBmXUOj-aPn0v7BMhoziXtkOL9ASmpxxas",
-        authDomain: "truva-5bdb3.firebaseapp.com",
-        databaseURL: "https://truva-5bdb3.firebaseio.com",
-        projectId: "truva-5bdb3",
-        storageBucket: "truva-5bdb3.appspot.com",
-        messagingSenderId: "455614720930"
-    };
+// function initSession() {
+//     var dateOfSession = makeTimestamp();
+//     //connect to firebase database
+//     var databaseRef = initFirebase();
 
-    firebase.initializeApp(config);
-    refDatabaseRoot = firebase.database();
-    return refDatabaseRoot;
-}//END initFirebase
+//     // Capture User Inputs and store them into variables
+//     var newSessionID = databaseRef.ref('/sessionEvents').push({
+//         sessionBeginDate: dateOfSession
+//     }).getKey(); //console.log("after initSession databaseRef = "); //console.log(databaseRef);
+//     return newSessionID;
+// }//end function initSession
 
+// function saveSearch(k) {
+//     // var dateOfSearch = makeTimestamp();
+//     //connect to firebase database
+//     var refTheDatabaseRoot = initFirebase();
 
-function initSession() {
-    var dateOfSession = makeTimestamp();
-    //connect to firebase database
-    var databaseRef = initFirebase();
+//     searchID = refTheDatabaseRoot.ref('/searchEvents').push({
+//         // searchSessionID: sesID,
+//         // searchDate: dateOfSearch,
+//         searchKeyword: k,
+//         // searchDistance: d,
+//         // searchLat: la,
+//         // searchLon: lo,
+//         // searchNumResults: 0,
+//         // searchJSONbody: ""
+//     }).getKey();
 
-    // Capture User Inputs and store them into variables
-    var newSessionID = databaseRef.ref('/sessionEvents').push({
-        sessionBeginDate: dateOfSession
-    }).getKey(); //console.log("after initSession databaseRef = "); //console.log(databaseRef);
-    return newSessionID;
-}//end function initSession
+//     refTheDatabaseRoot.ref('/searchEvents').on("value", function (snapshot) {
+//         var mySnapshot = snapshot.val(); //console.log(mySnapshot); console.log(" AND THAT WAS mySnapshot");
+//         var snapKeys = Object.keys(mySnapshot); //console.log(snapKeys); console.log(" - snapkeys ");
+//         var searchRecordToShow = '';
 
-function saveSearch(k) {
-    // var dateOfSearch = makeTimestamp();
-    //connect to firebase database
-    var refTheDatabaseRoot = initFirebase();
+//         var searchHistoryList = [];
+//         searchHistoryList.push(searchID);
 
-    searchID = refTheDatabaseRoot.ref('/searchEvents').push({
-        // searchSessionID: sesID,
-        // searchDate: dateOfSearch,
-        searchKeyword: k,
-        // searchDistance: d,
-        // searchLat: la,
-        // searchLon: lo,
-        // searchNumResults: 0,
-        // searchJSONbody: ""
-    }).getKey();
+//         // for (var j = 0; j < snapKeys.length; j++) {
 
-    refTheDatabaseRoot.ref('/searchEvents').on("value", function (snapshot) {
-        var mySnapshot = snapshot.val(); //console.log(mySnapshot); console.log(" AND THAT WAS mySnapshot");
-        var snapKeys = Object.keys(mySnapshot); //console.log(snapKeys); console.log(" - snapkeys ");
-        var searchRecordToShow = '';
+//         //     if (snapKeys[j] == searchID) {//if we're at the record that matches our key of choice...
+//         //         searchRecordToShow = mySnapshot[snapKeys[j]];//this is our record
+//         //     }//end if iterKey == thisSearchKey
+//         // }//end for i loop
 
-        var searchHistoryList = [];
-        searchHistoryList.push(searchID);
-
-        // for (var j = 0; j < snapKeys.length; j++) {
-
-        //     if (snapKeys[j] == searchID) {//if we're at the record that matches our key of choice...
-        //         searchRecordToShow = mySnapshot[snapKeys[j]];//this is our record
-        //     }//end if iterKey == thisSearchKey
-        // }//end for i loop
-
-        var nextPage = "search_results.html?kywd=" + k + "&dist=" + dist + "&lat=" + lat + "&lon=" + lon + "&sesID=''" // + sessionID + "&seaID=" + searchID;
-        location.replace(nextPage);
-    });//end searchEvents on value
-}//end function saveSearch
+//         var nextPage = "search_results.html?kywd=" + k + "&dist=" + dist + "&lat=" + lat + "&lon=" + lon + "&sesID=''" // + sessionID + "&seaID=" + searchID;
+//         location.replace(nextPage);
+//     });//end searchEvents on value
+// }//end function saveSearch
 
 
 function initMap() {
