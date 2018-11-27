@@ -15,7 +15,7 @@ var SavedSchema = new Schema({
 });
 
 // This creates our model from the above schema, using mongoose's model method
-var Saved = mongoose.model("Saved", NoteSchema);
+var Saved = mongoose.model("Saved", SavedSchema);
 
 // Export the Note model
 module.exports = Saved;
