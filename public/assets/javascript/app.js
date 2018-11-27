@@ -90,41 +90,42 @@ function getAutoGEO() {
 //     return newSessionID;
 // }//end function initSession
 
-// function saveSearch(k) {
-//     // var dateOfSearch = makeTimestamp();
-//     //connect to firebase database
-//     var refTheDatabaseRoot = initFirebase();
+function saveSearch(k) {
+    var nextPage = "search_results.html?kywd=" + k + "&dist=" + dist + "&lat=" + lat + "&lon=" + lon + "&sesID=''"; // + sessionID + "&seaID=" + searchID;
+    location.replace(nextPage);
 
-//     searchID = refTheDatabaseRoot.ref('/searchEvents').push({
-//         // searchSessionID: sesID,
-//         // searchDate: dateOfSearch,
-//         searchKeyword: k,
-//         // searchDistance: d,
-//         // searchLat: la,
-//         // searchLon: lo,
-//         // searchNumResults: 0,
-//         // searchJSONbody: ""
-//     }).getKey();
+    // var dateOfSearch = makeTimestamp();
 
-//     refTheDatabaseRoot.ref('/searchEvents').on("value", function (snapshot) {
-//         var mySnapshot = snapshot.val(); //console.log(mySnapshot); console.log(" AND THAT WAS mySnapshot");
-//         var snapKeys = Object.keys(mySnapshot); //console.log(snapKeys); console.log(" - snapkeys ");
-//         var searchRecordToShow = '';
+    // var searchID = refTheDatabaseRoot.ref('/searchEvents').push({
+    //     // searchSessionID: sesID,
+    //     // searchDate: dateOfSearch,
+    //     searchKeyword: k,
+    //     // searchDistance: d,
+    //     // searchLat: la,
+    //     // searchLon: lo,
+    //     // searchNumResults: 0,
+    //     // searchJSONbody: ""
+    // }).getKey();
 
-//         var searchHistoryList = [];
-//         searchHistoryList.push(searchID);
+    // refTheDatabaseRoot.ref('/searchEvents').on("value", function (snapshot) {
+    //     var mySnapshot = snapshot.val(); //console.log(mySnapshot); console.log(" AND THAT WAS mySnapshot");
+    //     var snapKeys = Object.keys(mySnapshot); //console.log(snapKeys); console.log(" - snapkeys ");
+    //     var searchRecordToShow = '';
 
-//         // for (var j = 0; j < snapKeys.length; j++) {
+    //     var searchHistoryList = [];
+    //     searchHistoryList.push(searchID);
 
-//         //     if (snapKeys[j] == searchID) {//if we're at the record that matches our key of choice...
-//         //         searchRecordToShow = mySnapshot[snapKeys[j]];//this is our record
-//         //     }//end if iterKey == thisSearchKey
-//         // }//end for i loop
+        // for (var j = 0; j < snapKeys.length; j++) {
 
-//         var nextPage = "search_results.html?kywd=" + k + "&dist=" + dist + "&lat=" + lat + "&lon=" + lon + "&sesID=''" // + sessionID + "&seaID=" + searchID;
-//         location.replace(nextPage);
-//     });//end searchEvents on value
-// }//end function saveSearch
+        //     if (snapKeys[j] == searchID) {//if we're at the record that matches our key of choice...
+        //         searchRecordToShow = mySnapshot[snapKeys[j]];//this is our record
+        //     }//end if iterKey == thisSearchKey
+        // }//end for i loop
+
+    //     var nextPage = "search_results.html?kywd=" + k + "&dist=" + dist + "&lat=" + lat + "&lon=" + lon + "&sesID=''" // + sessionID + "&seaID=" + searchID;
+    //     location.replace(nextPage);
+    // });//end searchEvents on value
+}//end function saveSearch
 
 
 function initMap() {
