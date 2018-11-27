@@ -34,7 +34,7 @@ $(".searchButton").on("click", function (event) {//user in on index.html if they
     event.preventDefault();//prevent enter button causing havoc
     userData.searchCriteria = $(".searchField").val();//get user input
 
-    //saveSearch(userData.searchCriteria);//save it to db and get the new record key
+    saveSearch(userData.searchCriteria);//save it to db and get the new record key
     //this function will take us to search_results page and map with map pins when its done
 });
 
