@@ -87,25 +87,6 @@ function getAutoGEO() {
     }
 }//END FUNCTION getAutoGEO
 
-// function makeTimestamp() {
-//     //set working variables of our own
-//     var dt = new Date();
-//     var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-//     return dt + time;
-// }//end function makeTimestamp
-
-// function initSession() {
-//     var dateOfSession = makeTimestamp();
-//     //connect to firebase database
-//     var databaseRef = initFirebase();
-
-//     // Capture User Inputs and store them into variables
-//     var newSessionID = databaseRef.ref('/sessionEvents').push({
-//         sessionBeginDate: dateOfSession
-//     }).getKey(); //console.log("after initSession databaseRef = "); //console.log(databaseRef);
-//     return newSessionID;
-// }//end function initSession
-
 function saveSearch() { 
     let data ={ 
         latitude: userData.lat,
@@ -131,38 +112,6 @@ function saveSearch() {
             console.log(`failure`, err);
         }
     );
-
-//firebase style
-//     // var dateOfSearch = makeTimestamp();
-//     //connect to firebase database
-//     var refTheDatabaseRoot = initFirebase();
-//     searchID = refTheDatabaseRoot.ref('/searchEvents').push({
-//         // searchSessionID: sesID,
-//         // searchDate: dateOfSearch,
-//         searchKeyword: k,
-//         // searchDistance: d,
-//         // searchLat: la,
-//         // searchLon: lo,
-//         // searchNumResults: 0,
-//         // searchJSONbody: ""
-//     }).getKey();
-
-//     refTheDatabaseRoot.ref('/searchEvents').on("value", function (snapshot) {
-//         var mySnapshot = snapshot.val(); //console.log(mySnapshot); console.log(" AND THAT WAS mySnapshot");
-//         var snapKeys = Object.keys(mySnapshot); //console.log(snapKeys); console.log(" - snapkeys ");
-//         var searchRecordToShow = '';
-
-//         var searchHistoryList = [];
-//         searchHistoryList.push(searchID);
-
-//         // for (var j = 0; j < snapKeys.length; j++) {
-
-//         //     if (snapKeys[j] == searchID) {//if we're at the record that matches our key of choice...
-//         //         searchRecordToShow = mySnapshot[snapKeys[j]];//this is our record
-//         //     }//end if iterKey == thisSearchKey
-//         // }//end for i loop
-//     });//end searchEvents on value
-//END firebase style
 
 }//end function saveSearch
 
@@ -302,7 +251,7 @@ function getZomatoRestId(markerData){
 
     $.ajax({  //zomato search for rest by name & loc - get zomato's restId
         type: "GET",
-        headers: { "X-Zomato-API-Key": "1747b7fcad14ac3af99c8b42a5eac0d7" },
+        headers: { "X-Zomato-API-Key": process.env.Z_API_KEY },
         url: queryURL,
         success: function (getRestId) { 
             var zomatoRestaurants = getRestId.restaurants; 
@@ -336,7 +285,7 @@ function getZomatoDetails(markerData){
 
     $.ajax({ //use zomato's restId to search for details of specific restaurant
         type: "GET",
-        headers: { "X-Zomato-API-Key": "1747b7fcad14ac3af99c8b42a5eac0d7" },
+        headers: { "X-Zomato-API-Key": process.env.Z_API_KEY },
         url: queryURL2,
         success: function (getRestDetails) { 
             //a click constitutes 'saving' this place
