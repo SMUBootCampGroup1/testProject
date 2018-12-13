@@ -2,5 +2,6 @@
 
 module.exports = {
   User: require("./User"),
-  Saved: require("./Saved")
+  Search: require("./Search"),
+  Result: require("./Result")
 };

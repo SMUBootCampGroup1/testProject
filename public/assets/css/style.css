@@ -20,9 +20,11 @@ black: #000000
 }
 
 body{
+    text-align: center;
     background-color: #8e9199;
+    background: url(../images/main_page_pic2.jpg);
 }
-
+a {color: #000; text-decoration: underline;}
 .borderOrange { /* for testing */
     border: 1px solid #FF5608
 }
@@ -41,14 +43,15 @@ i {
 }
 /* The Modal (background) */
 .modal {
+    text-align: center;
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 20; /* Sit on top */
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     overflow: auto; /* Enable scroll if needed */
-    width: 100%; /* Full width */
+    width: 85%; /* Full width */
     height: 100%; /* Full height */
     
     background-color: rgb(0,0,0); /* Fallback color */
@@ -59,17 +62,19 @@ i {
 .modal-content {
     font-size: 1.1em;
     color: white;
-    margin: 30% auto; /* 15% from the top and centered */
+    margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
-    width: 70%;
-    height: 65%;
+    width: 85%;
+    height: 95%;
     overflow: auto; /* Enable scroll if needed */
     border: #fff solid 1px; /* Could be more or less, depending on screen size */
-    /* background: linear-gradient(to bottom, rgba(255,86,8, 0.6), rgba(0,0,0,0.65)); */
+    background: linear-gradient(to bottom, rgba(255,209,148, 0.65), rgba(209,145,60,0.65));
     background-color: #3A4042;
     text-align: center;
     font-family: 'Oswald', sans-serif;
 }
+
+.modal  div { width: 90%; margin: 6px auto; }
 
 h3, p {
     text-shadow: none;
@@ -87,15 +92,12 @@ p {
 
 /* The Close Button */
 .close {
-    display: none;
+    position: relative; top: 0; right: -48%;
     color: black;
     text-align: center;
     font-size: 28px;
     font-weight: bold;
-    float: right;
     text-shadow: none;
-    position: relative;
-    right: 50%;
     cursor: pointer;
 }
 
@@ -134,10 +136,9 @@ p {
     width: 95%;
 }
 
-#priceAndRating {
-    padding-bottom: 10px;
-    padding-left: 10px;
-    margin-top: 100px;
+#prices {
+    color: #FFF;
+    margin: 12px;
 }
 
 .fa, .fas {
@@ -151,13 +152,11 @@ p {
     }
 
     .searchForm {
+        margin: 5% auto;
         max-width: 60%;
     }
 
     .mainPageSlider {
-        position: absolute;
-        top: 400px ;
-        left: 100px;
         padding: 5px;
     } 
 
@@ -169,9 +168,7 @@ p {
     }
 
     .mainPageSlider {
-        position: absolute;
-        top: 400px ;
-        left: 100px;
+        margin: 15% auto;
         padding: 5px;
     } 
 }
@@ -182,6 +179,7 @@ p {
     }
 
     .searchForm {
+        margin: 5% auto;
         width: 30%;
     }
 }
@@ -192,6 +190,7 @@ p {
     }
 
     .searchForm {
+        margin: 5% auto;
         max-width: 30%;
     }
 
@@ -219,17 +218,14 @@ p {
 }
 
 .tagLine {
-    position: absolute;
-    top: 275px;
-    left: 55px;
+    margin-bottom: 12px;
     font-family: Oswald, sans-serif;
     color: #fff;
+    text-shadow: 2px 2px #666;
 }
 
 .searchForm {
-    position: absolute;
-    top: 350px;
-    left: 55px;
+    margin: 5% auto;
     width: 75%;
 }
 
@@ -302,9 +298,8 @@ p {
 }
 
 #pictureDiv {
-    max-width: 100%;
-    max-height: 100%;
-    /* border: #FF5608 1px solid; */
+    max-height: 150px;
+    border: #FF5608 1px solid;
 }
 
 .imageStyle {
@@ -400,7 +395,7 @@ p {
 .avatar {
     color: #FF5608;
 }
-
+.input-group { text-align: center;}
 .input-icon-wrap {
     border: 1px solid #3A4042;    
     display: flex;

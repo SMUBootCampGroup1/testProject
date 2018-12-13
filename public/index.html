@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
+<!-- HERE!!! can I add yelp now that I have a server? -->
 
 <!-- 
 Main Pallet:
@@ -42,8 +43,8 @@ black: #000000
           <div class="collapse navbar-collapse navMenuItem " id="myNavbar">
               <ul class="nav navbar-nav">
                   <li class="active menuItem"><a href="search_history.html">Search History</a></li>
-                  <li class="active menuItem"><a href="index.html">Search</a></li>
-                  <li class="active menuItem"><a href="profile.html">Profile</a></li>
+                  <!-- <li class="active menuItem"><a href="index.html">Search</a></li> -->
+                  <!-- <li class="active menuItem"><a href="profile.html">Profile</a></li> -->
               </ul>
           </div>
           <div class="navItem logo ">
@@ -54,12 +55,21 @@ black: #000000
           </div>
         </div>
     </nav>
-    <img src="assets/images/main_page_pic2.jpg" id="mainPageImage" alt="Picture of a Restaurant with tables set">
-    
-    <!-- Tag Line -->
-    <h1 class="tagLine">Find Places Nearby</h1>
-    <!-- Search form -->
+    <!--<img src="assets/images/main_page_pic2.jpg" id="mainPageImage" alt="Picture of a Restaurant with tables set"> -->
+
     <div class="input-group input-group-sm mb-3 searchForm">
+        <div class="mainPageSlider">
+          <!-- Tag Line -->
+          <h1 class="tagLine">Find<br>Restaurants<br>Nearby</h1>
+            <img src="assets/images/allow.png" alt="please allow Google Locations" id="allowmessage" />
+            <div id='slider'>
+              <div><img src="assets/images/restaurants_small.jpg" alt="Steak on a plate at a restaurant" ></div>
+              <!-- <div><img src="assets/images/nightlife_small.jpg" alt="Women dancing at a club" ></div>
+              <div><img src="assets/images/live_music_small.jpg" alt="People at a live music venue" ></div>
+              <div><img src="assets/images/drinks_small.jpg" alt="Bartender making drinks" ></div> -->
+            </div>
+          </div>
+<!-- Search form from original project 
       <input type="text" class="form-control searchField" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
       <div class="input-group-append">
         <button class="btn btn-outline-secondary searchButton" type="button" id="button-addon2">
@@ -67,15 +77,7 @@ black: #000000
         </button>
       </div>
     </div>
-
-    <div class="mainPageSlider">
-      <div id='slider'>
-        <div><img src="assets/images/restaurants_small.jpg" alt="Steak on a plate at a restaurant" ></div>
-        <div><img src="assets/images/nightlife_small.jpg" alt="Women dancing at a club" ></div>
-        <div><img src="assets/images/live_music_small.jpg" alt="People at a live music venue" ></div>
-        <div><img src="assets/images/drinks_small.jpg" alt="Bartender making drinks" ></div>
-      </div>
-    </div>
+  -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="assets/javascript/menu.js"></script>

@@ -1,40 +1,57 @@
 var parameters = location.search.substring(1).split("&");  //console.log(parameters);
-var firstPos, kywd, dist, lat, lon, sessionID, searchID, myMap; //global variables to pass in GET
+var firstPos, dist, lat, lon, myMap; //global variables to pass in GET
 var userData = {
-    searchCriteria: ""
+    userId: 1,
+    searchFor: "",
+    dist: "",
+    lat: "",
+    lon: "",
+    savedAsId: "",
+    allSavedPlacesArray: [],
+    thisPlacePhotoArray: [],
+    thisPlaceUrl: ""
 };
 
 if (parameters == 0) {  //if there is no GET this is a new visitor - start afresh
+    $("#allowmessage").css('visibility', 'visible');
+    $("#slider").css('visibility', 'hidden');
     //go get their geo coordinates
     getAutoGEO();//this function will take care or resetting the webpage when done
 }//end if parameters == 0
 
 else if (parameters != 0) { //if there IS a GET then process the user's search input
-    var keepCount = 0;
+    $("#allowmessage").css('visibility', 'hidden').css('height', '0');
+    $("#slider").css('visibility', 'visible');
+    var keepCount = 0; 
     parameters.forEach(function (entry) {
         var splitPoint = entry.indexOf("=") + 1;
         switch (keepCount) {
-            case 0: kywd = entry.substring(splitPoint);
-            case 1: dist = entry.substring(splitPoint);
-            case 2: lat = entry.substring(splitPoint);
-            case 3: lon = entry.substring(splitPoint);
-            case 4: sessionID = entry.substring(splitPoint);
-            case 5: searchID = entry.substring(splitPoint);
+            case 0: userData.searchFor = entry.substring(splitPoint);
+            case 1: userData.savedAsId = entry.substring(splitPoint);
+            case 2: userData.dist = entry.substring(splitPoint);
+            case 3: userData.lat = entry.substring(splitPoint);
+            case 4: userData.lon = entry.substring(splitPoint);
         } //end switch
         keepCount++;
-    });//end parameters.forEach    
-
+    });//end parameters.forEach  
 }
 
 setSlider();
 
 //Events====================================================
 
-$(".searchButton").on("click", function (event) {//user in on index.html if they click myBtn2
+$(".slick-active").on("click", function (event) {
     event.preventDefault();//prevent enter button causing havoc
-    userData.searchCriteria = $(".searchField").val();//get user input
-
-    saveSearch(userData.searchCriteria);//save it to db and get the new record key
+   
+    switch($(this).index('.slick-track')){
+        case -1: userData.searchFor = "restaurant"; break;
+        case -2: userData.searchFor = "nightlife"; break;
+        case -3: userData.searchFor = "music"; break;
+        case -4: userData.searchFor = "bars"; break;
+        default: userData.searchFor - "restaurants"; break;
+    }
+    
+    saveSearch();//save it to db and get the new record key
     //this function will take us to search_results page and map with map pins when its done
 });
 
@@ -43,30 +60,29 @@ $(".searchButton").on("click", function (event) {//user in on index.html if they
 function setSlider() {
     $('#slider').slick({
         dots: true,
-        arrows: true
+        arrows: true,
+        draggable: false
     });
 }// end setSlider
 
 function getAutoGEO() {
-    console.log($(".searchField").val());
     var pos = "";
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
+        navigator.geolocation.getCurrentPosition(function (position) { 
             pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
             setTimeout(function () {//don't activate the page at all until geo location is obtained
                 if (pos != "") {
-                    kywd = $(".searchField").val();
                     dist = "8800";
                     lat = pos.lat;
                     lon = pos.lng;
-                    // sessionID = initSession();
-                    var nextPage = "index.html?kywd=" + kywd + "&dist=" + dist + "&lat=" + lat + "&lon=" + lon + "&sesID=''"; // + sessionID;
+                    //this is where we first set these params, before search, so do not get userData values here
+                    var nextPage = "index.html?kywd=&searchId=&dist=" + dist + "&lat=" + lat + "&lon=" + lon;
                     location.replace(nextPage);
                 }
-            }, 2500);
+            }, 1500);
         });
     }
 }//END FUNCTION getAutoGEO
@@ -76,7 +92,7 @@ function getAutoGEO() {
 //     var dt = new Date();
 //     var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
 //     return dt + time;
-// }
+// }//end function makeTimestamp
 
 // function initSession() {
 //     var dateOfSession = makeTimestamp();
@@ -90,8 +106,32 @@ function getAutoGEO() {
 //     return newSessionID;
 // }//end function initSession
 
-function saveSearch(k) {
-    
+function saveSearch() { 
+    let data ={ 
+        latitude: userData.lat,
+        longitude: userData.lon,
+        distance: userData.dist,
+        keyword: userData.searchFor,
+        userId: userData.userId
+    }
+
+    $.ajax(
+        {
+        method: "POST",
+        url: "/api/searches",
+        data: data
+        }
+    ).then(
+        function(res) { 
+            userData.savedAsId = res._id;
+            var nextPage = "search_results.html?kywd=" + userData.searchFor + "&searchId=" + userData.savedAsId + "&dist=" + userData.dist + "&lat=" + userData.lat + "&lon=" + userData.lon;
+            location.replace(nextPage);
+    }).catch(
+        function(err) {
+            console.log(`failure`, err);
+        }
+    );
+
 //firebase style
 //     // var dateOfSearch = makeTimestamp();
 //     //connect to firebase database
@@ -122,156 +162,285 @@ function saveSearch(k) {
 //         //     }//end if iterKey == thisSearchKey
 //         // }//end for i loop
 //     });//end searchEvents on value
+//END firebase style
 
-        var nextPage = "search_results.html?kywd=" + k + "&dist=" + dist + "&lat=" + lat + "&lon=" + lon + "&sesID=''" // + sessionID + "&seaID=" + searchID;
-        location.replace(nextPage);
 }//end function saveSearch
 
-
 function initMap() {
-    var autoLat = parseFloat(lat); var autoLon = parseFloat(lon);
+    var autoLat = parseFloat(userData.lat); var autoLon = parseFloat(userData.lon);
     var markCenter = { lat: autoLat, lng: autoLon };
-
+    
     myMap = new google.maps.Map(document.getElementById("map"), {
         zoom: 13,
         center: markCenter
     });
 
-    var request = {
+    var requestMap = {
         location: markCenter,
-        radius: 8800, //5-miles
-        // types: ['restaurant', 'cafe', 'food']
-        types: [kywd]
-        //types: ['night_club']
+        radius: userData.dist,
+        types: [userData.searchFor]
     };
 
-    var service = new google.maps.places.PlacesService(myMap); 
-    //console.log("service " + service);
-    service.nearbySearch(request, callback);
+    var serviceMap = new google.maps.places.PlacesService(myMap); 
+    serviceMap.nearbySearch(requestMap, callbackMap);
 
 }//close initMap
 
-function callback(results, status) {
+function callbackMap(resultsMap, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
-        }
+        //save all results to db.results then show map
+        savePlaces(resultsMap); //which then calls createMarker
+                                
     }
 }//close callback
 
+function savePlaces(allResults){//save general place data before showing map & map pins
+    
+    for(let i=0; i<allResults.length; i++){
+        let thisPlace = {
+            city: "",
+            cuisines: [],
+            googlePhotos: [],
+            googlePlaceId: allResults[i].place_id,
+            googleRating: allResults[i].rating,
+            latitude: allResults[i].geometry.location.lat(),
+            longitude: allResults[i].geometry.location.lng(),
+            name: allResults[i].name,
+            searchId: userData.savedAsId,
+            street: allResults[i].vicinity,
+            types: allResults[i].types,
+            website: "",
+            zip: "",
+            zomatoMenu: "",
+            zomatoPhotos: "",
+            zomatoRating: 0
+        }
+        
+            $.ajax(
+                {
+                method: "POST",
+                url: "/api/places",
+                data: thisPlace
+                }
+            )
+            .then(function(savedPlace){ 
+                if(i < (allResults.length-1)){
+                    userData.allSavedPlacesArray.push(savedPlace);
+                }
+                else if( i == (allResults.length-1) ){
+                    let arrayLength = userData.allSavedPlacesArray.length;
+                    for (let j = 0; j < arrayLength; j++) {
+                        createMarker(userData.allSavedPlacesArray[j]);
+                    }
+                }
+            })
+            .catch(
+                function(err) {
+                    console.log(`failure`, err);
+                }
+            );
+    }
+
+}//end function savePlaces
+
 function createMarker(place) { 
-    // console.log(place);
-    var placeLoc = {
-        lat: place.geometry.location.lat(),
-        lng: place.geometry.location.lng()
-    };
+
     var placeName = place.name;
+    var placeId = place.googlePlaceId;
+    var dbResultId = place._id;
 
     var dynMarker = new google.maps.Marker({
+        dbresultid: dbResultId,
+        icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
         map: myMap,
-        position: placeLoc,
-        name: placeName
+        position: {
+            lat: place.latitude,
+            lng: place.longitude
+        },
+        placelatitude: place.latitude,
+        placelongitude: place.longitude,
+        placename: placeName,
+        placeid: placeId
+    });
+    google.maps.event.addListener(dynMarker, 'click', function() {
+        dynMarker.setIcon("http://maps.google.com/mapfiles/ms/icons/green-dot.png");                                    
+        getGoogleDetails(this); //which in turn calls getZomatoShowModal
     });
 
-    dynMarker.addListener('click', function () {
-        // if(place.opening_hours.open_now == 'false'){
-        //     varOpenNow = 'Open Now';
-        // }
-        // else if (place.opening_hours.open_now == 'true'){
-        //     varOpenNow = "Closed";
-        // }
-        // else{varOpenNow = "Closed";}
-
-        var nameToFind = this.name; 
-        console.log(nameToFind);
-        var queryURL = "https://developers.zomato.com/api/v2.1/search?q=" + nameToFind + "&lat=" + placeLoc.lat + "&lon=" + placeLoc.lng;
-
-        $.ajax({  //Ajax call 1
-            type: "GET",
-            headers: { "X-Zomato-API-Key": "1747b7fcad14ac3af99c8b42a5eac0d7" },
-            url: queryURL,
-            success: function (response) {
-
-                userData.idToFind = response.restaurants['0'].restaurant.R.res_id; 
-                console.log("id = " + userData.idToFind);
-
-                var queryURL2 = "https://developers.zomato.com/api/v2.1/restaurant?res_id=" + userData.idToFind;
-            
-                    $.ajax({ //Ajax call 2
-                        type: "GET",
-                        headers: { "X-Zomato-API-Key": "1747b7fcad14ac3af99c8b42a5eac0d7" },
-                        url: queryURL2,
-                        success: function (response) {
-                            var results2 = response;
-                            console.log(place);
-                            console.log(results2);
-
-                            // var address = results2.address;
-                            // var cuisines = results2.cuisines;
-                            // var menu_url = results2.menu_url;
-                            // var photos_url = results2.photos_url;
-                            // var url = results2.url;
-                            // var user_rating = results2.user_rating.aggregate_rating;
-
-                            // Update page with search results data
-                            console.log("Google Name: " + place.name);
-                            console.log("Zamato cuisines: " + results2.cuisines);
-                            console.log("Zamato Photo: " + results2.featured_image);
-                            console.log("Google Rating: " + place.rating );
-                            console.log("Zamato Rating: " + results2.user_rating.aggregate_rating);
-                            console.log("Zamato address: " + results2.location.address);
-                            console.log("Zamato menu_url: " + results2.menu_url);
-                            console.log("Zamato url: " + results2.url);
-                            console.log("Zamato photos_url: " + results2.photos_url);
-                            
-                            $("#publicSpaceName").html("<p>" + place.name + "</p>");
-                            $("#zamatoCuisines").html("<p>" + results2.cuisines + "</p>");
-                            $("#zamatoPhoto").html("<img src='" +results2.featured_image + "' style='width: 75%; height: auto;'>");
-                            $("#placeRating").html("<p>Google Rating: " + place.rating + "</p>");
-                            $("#zamatoRating").html("<p>Zamato Rating: " + results2.user_rating.aggregate_rating + "</p>");
-                            $("#zamatoAddress").html("<p>" + results2.location.address + "</p>");
-                            $("#zamatoMenu").html("<p><a href='" + results2.menu_url + "' target='_blank'>Menu</a></p>");
-                            $("#zamatoPage").html("<p><a href='" + results2.url + "' target='_blank'>Zamato Page</a></p>");
-                            $("#zamatoPhotoPage").html("<p><a href='" + results2.photos_url + "' target='_blank'>Zamato Photos</a></p>");
-                            // $("#reviews").html("reviews here");
-                            // $("#myModal").show();
-                            modal.style.display = "block";
-
-                        }//end Success 2
-                    });//end Ajax 2
-                },   //end Success 1
-                    error: function (response, status, error) {
-                        console.log(error);         
-                        // go to modal with no results found
-                        $("#publicSpaceName").html("<p>No data found for this location</p>");
-
-                        modal.style.display = "block";
-
-                }
-            });//end Ajax 1
-
-// Images
-        var imageHTML1 = "<div><img src='";
-        var imageHTML2 = "' class='imageStyle'></div>";
-        //for (let i = 0; i < yelpPicArray.length; i++) {
-            // $("#pictureDiv").append(
-            //     imageHTML1 +
-            //     place.photos[0].html_attributions +
-            //     imageHTML2
-            // );
-        //}
-// End Images
-
-// Update page with search results data
-
-        $("#publicSpaceName").html(this.name);
-        // $("#header").append(varOpenNow + place.price_level); 
-        // console.log(place.photos[0].getUrl());
-        //$("#pictureDiv").attr("src", place.photos.html_attributions).css('width', '100%');
-        $("#placeRating").html( place.rating );
-        $("#reviews").html("reviews here");
-        //$("#myModal").show();
-
-    });
 }//end createMarker
+
+function getGoogleDetails(clickedMarker){ 
+
+    var requestDetails = {
+        placeId: clickedMarker.placeid,
+        fields: ['photos','url']
+    }; 
+
+    var serviceDetails = new google.maps.places.PlacesService(myMap); 
+    serviceDetails.getDetails(requestDetails, 
+        function (resultsDetails, status) {
+            if (status == google.maps.places.PlacesServiceStatus.OK) { 
+                userData.thisPlacePhotoArray = resultsDetails.photos; 
+                userData.thisPlaceUrl = resultsDetails.url;
+            }//end if status = ok
+            else{
+                userData.thisPlacePhotoArray = ""; 
+                userData.thisPlaceUrl = "";
+                console.log("failed to retrieve photo array and url from google");}
+        }
+    );//end serviceDetails.getDetails
+    getZomatoRestId(clickedMarker); //which will call getZomatoDetails
+                                    //then either zomatoRender or googleRender
+}//close function getGoogleDetails
+
+function getZomatoRestId(markerData){
+    let zomatoNameToFind = markerData.placename;
+    let zLatitude = markerData.placelatitude;
+    let zLongitude = markerData.placelongitude;
+
+    let queryURL = "https://developers.zomato.com/api/v2.1/search?q=" + zomatoNameToFind + "&lat=" + zLatitude + "&lon=" + zLongitude;
+
+    $.ajax({  //zomato search for rest by name & loc - get zomato's restId
+        type: "GET",
+        headers: { "X-Zomato-API-Key": "1747b7fcad14ac3af99c8b42a5eac0d7" },
+        url: queryURL,
+        success: function (getRestId) { 
+            var zomatoRestaurants = getRestId.restaurants; 
+            var restIdToFind = "";
+            for(let k=0; k<zomatoRestaurants.length; k++){
+                if(!restIdToFind){ 
+                    let zName=zomatoRestaurants[k].restaurant.name.toString();
+                    let gName=zomatoNameToFind.toString();
+                 
+                    if(zName == gName){
+                        restIdToFind=zomatoRestaurants[k].restaurant.R.res_id;
+                    }   
+                }//end if restIdToFind.length = 0
+            }//end for k loop
+
+            if(restIdToFind){
+                userData.restIdToFind = restIdToFind;
+                getZomatoDetails(markerData); //which then calls renderZomato
+            }
+            else{renderGoogle(markerData);}
+        },
+        else: function(markerData){
+            renderGoogle(markerData);
+        }
+    });
+}
+
+function getZomatoDetails(markerData){
+    var restIdToFind = userData.restIdToFind;
+    var queryURL2 = "https://developers.zomato.com/api/v2.1/restaurant?res_id=" + restIdToFind;
+
+    $.ajax({ //use zomato's restId to search for details of specific restaurant
+        type: "GET",
+        headers: { "X-Zomato-API-Key": "1747b7fcad14ac3af99c8b42a5eac0d7" },
+        url: queryURL2,
+        success: function (getRestDetails) { 
+            //a click constitutes 'saving' this place
+            //update Results table
+            var updateData = {
+                _id: markerData.dbresultid,
+                cuisines: getRestDetails.cuisines,
+                googlePhotos: userData.thisPlacePhotoArray,
+                priceLevel: getRestDetails.price_range,
+                priceTwo: getRestDetails.average_cost_for_two,
+                saved: true,
+                website: userData.thisPlaceUrl,
+                zomatoMenu: getRestDetails.menu_url,
+                zomatoPhoto: getRestDetails.photos_url,
+                zomatoRating: getRestDetails.user_rating.aggregate_rating
+            }
+
+            $.ajax(
+                {
+                    method: "PUT",
+                    url: "/api/places/" + markerData.dbresultid,
+                    data: updateData
+                }
+            )
+            .then(function(savedPlace){ 
+                renderZomato(savedPlace);
+            })
+            .catch(function(markerData){
+                renderZomato(markerData);
+            });//end of marking this row saved in Results table
+        },//end success
+        else: function(markerData){
+            renderGoogle(markerData);
+        }
+    });//end ajax request zomato details
+}//end getZomatoDetails
+                    
+function renderZomato(placeData){
+    var website = userData.thisPlaceUrl;
+    var priceContent = "";
+    for(let p=0; p<placeData.priceLevel; p++){ 
+        priceContent = priceContent + "&nbsp; <img src=assets/images/dollar.png width=20px alt=dollarsign>";
+    }
+    priceContent = priceContent + " (Avg for two $" + placeData.priceTwo + ")";
+    if(placeData.zomatoRating == 0){var zRating = 'none';} else{var zRating = placeData.zomatoRating;}
+    
+    $("#publicSpaceName").html("<p>" + placeData.name + "</p>");
+    $("#cuisines").html("<p>" + placeData.cuisines + "</p>");
+    $("#prices").html("<p>Price: " + priceContent + "</p>");
+    // if(savedPlace.googlePhotos){
+    //     $("#photo").html("<p>" + savedPlace.googlePhotos + "</p>");
+    // }
+    // else{("#photo").css('visibility', 'hidden').css('height','0');}
+    $("#googleRating").html("<p>Google Rating: " + placeData.googleRating + "</p>");
+    $("#zomatoRating").html("<p>zomato Rating: " + zRating + "</p>");
+    $("#zomatoAddress").html("<p>" + placeData.street + "</p>");
+    $("#zomatoMenu").html("<p><a href='" + placeData.zomatoMenu + "' target='_blank'>Zomato Menu</a></p>");
+    $("#googleUrl").html("<p><a href='" + placeData.website + "' target='_blank'>Google Places Page</a></p>");
+    // if(savedPlace.zomatoPhotos.length>0){
+    //     ("#zomatoPhotoPage").html("<p><a href='" + savedPlace.zomatoPhotos + "' target='_blank'>more Photos On Zomato</a></p>");
+    // }
+    // else{ ("#zomatoPhotoPage").css('visibility', 'hidden').css('height','0');}
+    
+    modal.style.display = "block";
+}//end renderZomato
+
+function renderGoogle(placeData){
+    //a click constitutes 'saving' this place
+    //update Results table
+    var updateData = {
+        _id: placeData.dbresultid,
+        googlePhotos: userData.thisPlacePhotoArray,
+        saved: true,
+        website: userData.thisPlaceUrl
+    }
+
+    $.ajax(
+        {
+            method: "PUT",
+            url: "/api/places/" + placeData.dbresultid,
+            data: updateData
+        }
+    )
+    .then(function(savedPlace){ 
+        $("#publicSpaceName").html("<p>" + savedPlace.name + "</p>");
+        // if(savedPlace.googlePhotos){
+        //     $("#photo").html("<p>" + savedPlace.googlePhotos + "</p>");
+        // }
+        // else{("#photo").css('visibility', 'hidden').css('height','0');}
+        $("#googleRating").html("<p>Google Rating: " + savedPlace.googleRating + "</p>");
+        $("#googleUrl").html("<p><a href='" + savedPlace.website + "' target='_blank'>Google Places Page</a></p>");
+
+        modal.style.display = "block";
+    })
+    .catch(function(placeData) {
+        $("#publicSpaceName").html("<p>" + placeData.name + "</p>");
+        // if(savedPlace.googlePhotos){
+        //     $("#photo").html("<p>" + savedPlace.googlePhotos + "</p>");
+        // }
+        // else{("#photo").css('visibility', 'hidden').css('height','0');}
+        $("#googleRating").html("<p>Google Rating: " + placeData.googleRating + "</p>");
+        $("#googleUrl").html("<p><a href='" + placeData.website + "' target='_blank'>Google Places Page</a></p>");
+
+        modal.style.display = "block";
+    });
+}//end renderGoogle
 

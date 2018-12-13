@@ -1,3 +1,4 @@
+/*firebase style
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyDzLJJDQpXlU9GlmiKFnOcOmcQ0PmNDVGU",
@@ -19,7 +20,10 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 // End Initialize Firebase
+*/
 
+//HERE!!! write functions for registering and sigining in
+//requires encryption
 
 var userData = {
     name: "",

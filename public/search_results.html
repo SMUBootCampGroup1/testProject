@@ -46,12 +46,14 @@ black: #000000
                     <li class="active menuItem">
                         <a href="search_history.html">Search History</a>
                     </li>
+                    <!--
                     <li class="active menuItem">
                         <a href="index.html">Search</a>
-                    </li>
+                    </li> 
                     <li class="active menuItem">
                         <a href="profile.html">Profile</a>
                     </li>
+                    -->
                 </ul>
             </div>
             <div class="navItem logo ">
@@ -63,35 +65,37 @@ black: #000000
         </div>
     </nav>
     <!-- End Top Menu -->
-    <div class="input-group input-group-sm mb-3 searchFormResultsPage">
+    <!-- <div class="input-group input-group-sm mb-3 searchFormResultsPage">
         <input type="text" class="form-control searchField" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
         <div class="input-group-append">
             <button class="btn btn-outline-secondary searchButton" type="button" id="button-addon2">
                 <i class="fas fa-search searchIcon" id="topBarProfileIcon"></i>
             </button>
         </div>
-    </div>
+    </div> -->
 
     <!-- Trigger/Open The Modal -->
 
     <div id="map">
-        <!-- <p id="errorMessage"></p> -->
+        
     </div>
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
         <!-- Modal content -->
-        <!--make  a dollar sign icon to show how expensive-->
+
         <div class="modal-content">
+            <span class="close">x</span>
             <div><h1 id="publicSpaceName"></h1></div>
-            <div id="zamatoCuisines"></div>
-            <div id="zamatoPhoto"></div>
-            <div id="placeRating"></div>
-            <div id="zamatoRating"></div>
-            <div id="zamatoAddress"></div>
-            <div id="zamatoMenu"></div>
-            <div id="zamatoPage"></div>
-            <div id="zamatoPhotoPage"></p>
+            <div id="cuisines"></div>
+            <div id="prices"></div>
+            <div id="photo"><img src=assets/images/nophoto.jpg></div>
+            <div id="googleRating"></div>
+            <div id="zomatoRating"></div>
+            <div id="zomatoAddress"></div>
+            <div id="zomatoMenu"></div>
+            <div id="googleUrl"></div>
+            <!-- <div id="zomatoPhotoPage"></div> -->
             <!-- <div id="reviewsDiv"><h3>Reviews: </h3><p id="reviews"></p></div> -->
         </div>
     </div>
@@ -108,7 +112,10 @@ black: #000000
             initMap()
         });
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?&key=<API_KEY>&libraries=places&callback=initMap"></script>
-</body>
+    <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyCve7S6lDZ0FTLehpk2KFWSvxpjwVgdOto&libraries=places&callback=initMap"></script>
+    <!--  if I want placeDetails this is the call 
+    <script src="https://maps.googleapis.com/maps/api/place/details/json?&key=AIzaSyCve7S6lDZ0FTLehpk2KFWSvxpjwVgdOto&placeid=<placeId>&fields=photos&callback=callbackDetails"></script>
+    -->
+    </body>
 
 </html>

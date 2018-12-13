@@ -5,17 +5,19 @@ var Schema = mongoose.Schema;
 
 // Using the Schema constructor, create a new NoteSchema object
 // This is similar to a Sequelize model
-var SavedSchema = new Schema({
-  name: String,
-  link: String,
-  street: String,
-  city: String,
-  state: String,
-  zip: String
+var SearchSchema = new Schema({
+  distance: Number,
+  keyword: String,
+  latitude: String,
+  longitude: String,
+  userId: String
+},
+{
+  timestamps: true
 });
 
 // This creates our model from the above schema, using mongoose's model method
-var Saved = mongoose.model("Saved", SavedSchema);
+var Search = mongoose.model("Search", SearchSchema);
 
 // Export the Note model
-module.exports = Saved;
+module.exports = Search;
