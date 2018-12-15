@@ -4,7 +4,7 @@ Restaurant Search Curator
 
 # Live Link
 <a href=https://truvanow.herokuapp.com/>
-    <img src=assets/images/truva_live_link_on_github.png>
+    <img src=truva_live_link_on_github.png>
 </a>
 
 # What It Does
@@ -35,8 +35,9 @@ Restaurant Search Curator
 - Google Maps/Places API
 - Zomato API
 - UI: Modal and forms (Bootstrap form, we added input field validation)
-- Backend: Firebase Realtime Database
-- Hosting: Firebase Hosting
+- Backend: NodeJs ExpressJs MongoDB with Mongoose Schema
+- Hosting: Hosted on Heroku
+- Maintained by Donna Okrongly
 
 # Color pallet
 - Main Pallet:
