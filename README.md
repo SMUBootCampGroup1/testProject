@@ -3,7 +3,7 @@ Restaurant Search Curator
 (Kayak for Restaurants)
 
 # Live Link
-<a href=https://smubootcampgroup1.github.io/testProject/>
+<a href=https://truvanow.herokuapp.com/>
     <img src=assets/images/truva_live_link_on_github.png>
 </a>
 
