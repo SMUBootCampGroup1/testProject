@@ -27,6 +27,7 @@ app.get("/search_history.html", function(req, res) {
 });
 
 //api routes
+
 app.get("/api/searchhistory/:user", function(req, res){
   var userId = req.params.user;
   var historyObject = [];

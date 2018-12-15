@@ -1,4 +1,5 @@
-var parameters = location.search.substring(1).split("&");  //console.log(parameters);
+var parameters = location.search.substring(1).split("&"); 
+
 var firstPos, dist, lat, lon, myMap; //global variables to pass in GET
 var userData = {
     userId: 1,
@@ -42,7 +43,7 @@ setSlider();
 
 $(".slick-active").on("click", function (event) {
     event.preventDefault();//prevent enter button causing havoc
-   
+
     switch($(this).index('.slick-track')){
         case -1: userData.searchFor = "restaurant"; break;
         case -2: userData.searchFor = "nightlife"; break;
@@ -251,7 +252,7 @@ function getZomatoRestId(markerData){
 
     $.ajax({  //zomato search for rest by name & loc - get zomato's restId
         type: "GET",
-        headers: { "X-Zomato-API-Key": process.env.Z_API_KEY },
+        headers: { "X-Zomato-API-Key": "1747b7fcad14ac3af99c8b42a5eac0d7" },
         url: queryURL,
         success: function (getRestId) { 
             var zomatoRestaurants = getRestId.restaurants; 
@@ -285,7 +286,7 @@ function getZomatoDetails(markerData){
 
     $.ajax({ //use zomato's restId to search for details of specific restaurant
         type: "GET",
-        headers: { "X-Zomato-API-Key": process.env.Z_API_KEY },
+        headers: { "X-Zomato-API-Key": "1747b7fcad14ac3af99c8b42a5eac0d7" },
         url: queryURL2,
         success: function (getRestDetails) { 
             //a click constitutes 'saving' this place
